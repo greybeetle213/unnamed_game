@@ -26,6 +26,7 @@
             player.yCameraMovement = "fixed"
             player.camerax = 0
             player.cameray = 0
+            map.npcs = [[0,64,96]]
         }
         function loadRoom0(){
             player.inOverworld = true
@@ -68,7 +69,7 @@
             yMovement = 0
             xCameraMovement = "fixed"
             yCameraMovement = "free"
-            npcs = [[]]
+            npcs = [[2,"npc_mum_0.png","npc_mum_1.png","npc_mum_2.png","npc_mum_3.png",["text_box_0.png","text_box_1.png"]]]
             MapColision = {room0:[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0], [0, 0, 1, 2, 1, 3, 1, 2, 1, 0, 0], [0, 0, 1, 2, 2, 0, 2, 2, 1, 0, 0], [0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], house0:[[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,1,0,],[0,0,0,0,0,0,0,0,],[0,0,0,1,1,"npc 0",0,0,],[0,0,0,1,1,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,3,3,0,0,0,]]}
             currentMapColision = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0], [0, 0, 1, 2, 1, 3, 1, 2, 1, 0, 0], [0, 0, 1, 2, 2, 0, 2, 2, 1, 0, 0], [0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
             //the colision for the current room
@@ -83,13 +84,17 @@
             Directon = 0
             AnimaionProgress = 2
             startingPos = [0,0]
-            map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos}
+            map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[]}
             player = { x: x, y: y, playerx: playerx, playery: playery, camerax: camerax, cameray: cameray, image: playerImage, AnimationProgress: AnimaionProgress, Direction: Directon, xCameraMovement: xCameraMovement, yCameraMovement: yCameraMovement, xMovement: xMovement, yMovement: yMovement, inOverworld:true}
             encounterPrimed = false //whether there will be an encounter when the player reaches the tile they are going to
             function loop() {
                 ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height)
                 ctx.drawImage(room1, player.camerax+map.startingPos[0],player.cameray+map.startingPos[1], map.width, map.height)
                 ctx.drawImage(player.image[player.Direction][player.AnimationProgress], player.playerx, player.playery, pixelsize * 16, pixelsize * 16)
+                npcstodraw = map.npcs.length - 1
+                while(npcstodraw >= 0){
+                    ctx.drawImage(map.npcs[npcstodraw])
+                }
                 if (down == true && player.yMovement == 0 && player.xMovement == 0) { // down movement
                     if (map.colision[player.y + 1][player.x] != 1 && player.Direction == 0){
                         player.yMovement = 16
