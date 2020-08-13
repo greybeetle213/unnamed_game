@@ -27,6 +27,7 @@
             player.camerax = 0
             player.cameray = 0
             map.npcs = [[0,96*pixelsize,64*pixelsize,new Image(),5,3,["all boys leave","home someday","it said so", "on TV"] ]]//1=x, 2=y, 3=image,4=collision x, collision y, text
+            map.npcs[0][3].onload = function() {console.log("loaded")}
             map.npcs[0][3].src = "npcs/npc_mum_1.png"
         }
         function loadRoom0(){
