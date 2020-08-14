@@ -52,6 +52,7 @@
             player.y += 1
             player.yMovement = 16
             player.Direction = 0
+            loadNPCS()
             room1.src = "room0.png"
         }
         function init() {
@@ -103,7 +104,7 @@
             Directon = 0//
             AnimaionProgress = 2
             startingPos = [0,0]
-            map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["HI!","I like shorts!","They're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["Have you seen", "Billy anywhere?", "he was playing","with a strange","ballon last i", "saw him."] ]]}
+            map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["HI!","I like shorts!","They're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["Have you seen", "Billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
             loadNPCS()
             player = { x: x, y: y, playerx: playerx, playery: playery, camerax: camerax, cameray: cameray, image: playerImage, AnimationProgress: AnimaionProgress, Direction: Directon, xCameraMovement: xCameraMovement, yCameraMovement: yCameraMovement, xMovement: xMovement, yMovement: yMovement, inOverworld:true}
             encounterPrimed = false //whether there will be an encounter when the player reaches the tile they are going to
