@@ -26,9 +26,19 @@
             player.yCameraMovement = "fixed"
             player.camerax = 0
             player.cameray = 0
-            map.npcs = [[0,96*pixelsize,64*pixelsize,new Image(),5,3,["all boys leave","home someday","it said so", "on TV"] ]]//1=x, 2=y, 3=image,4=collision x, collision y, text
-            map.npcs[0][3].onload = function() {console.log("loaded")}
-            map.npcs[0][3].src = "npcs/npc_mum_1.png"
+            room1.onload = function() {console.log("loaded")}
+            room1.src = "house_0.png"
+            map.npcs = [[0,96*pixelsize,64*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],5,3,["all boys leave","home someday","it said so", "on TV"] ]]//1=x, 2=y, 3=image,4=collision x, collision y, text
+            var npcsToLoad = map.npcs.length
+            var imagesToLoad = 4
+            while(npcsToLoad >= 0, imagesToLoad -= 1){
+                imagesToLoad = 4
+                while(imagesToLoad >= 0){
+                    map.npcs[npcsToLoad][3][imagesToLoad].onload = function() {console.log("loaded")}
+                    map.npcs[npcsToLoad][3][imagesToLoad].src = "npcs/npc_mum_1.png" //NOTE: make loop to load all images from all npcs
+                    imagesToLoad -= 1
+                npcsToLoad -= 1
+            }
         }
         function loadRoom0(){
             player.inOverworld = true
@@ -99,7 +109,7 @@
                 ctx.drawImage(player.image[player.Direction][player.AnimationProgress], player.playerx, player.playery, pixelsize * 16, pixelsize * 16)
                 npcstodraw = map.npcs.length - 1
                 while(npcstodraw >= 0){
-                    ctx.drawImage(map.npcs[npcstodraw][3],map.npcs[npcstodraw][1],map.npcs[npcstodraw][2],16*pixelsize,16*pixelsize)
+                    ctx.drawImage(map.npcs[npcstodraw][3][0],map.npcs[npcstodraw][1],map.npcs[npcstodraw][2],16*pixelsize,16*pixelsize)
                     npcstodraw -= 1
                 }
                 if(textshowing == true){
@@ -227,7 +237,7 @@
                             npcstocheck = map.npcs.length - 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y - 1 && map.npcs[npcstocheck][4] == player.x){
-                                    map.npcs[npcstocheck][3].src = npcs[map.npcs[npcstocheck][0]][0]
+                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][1]
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
