@@ -244,7 +244,7 @@
                             npcstocheck = map.npcs.length - 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y - 1 && map.npcs[npcstocheck][4] == player.x){
-                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][1]
+                                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][1].src
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
@@ -260,7 +260,7 @@
                             npcstocheck = map.npcs.length - 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y + 1 && map.npcs[npcstocheck][4] == player.x){
-                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][3]
+                                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][3].src
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
@@ -276,7 +276,7 @@
                             npcstocheck = map.npcs.length - 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x - 1){
-                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][4]
+                                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][4].src
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
@@ -292,7 +292,7 @@
                             npcstocheck = map.npcs.length - 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x + 1){
-                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][2]
+                                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][2].src
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
