@@ -28,15 +28,16 @@
             player.cameray = 0
             room1.onload = function() {console.log("loaded")}
             room1.src = "house_0.png"
-            map.npcs = [[0,96*pixelsize,64*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],5,3,["all boys leave","home someday","it said so", "on TV"] ]]//1=x, 2=y, 3=image,4=collision x, collision y, text
-            var npcsToLoad = map.npcs.length
+            map.npcs = [[0,96*pixelsize,64*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],5,3,["all boys leave","home someday","it said so", "on TV"] ]]//0=id in npcs 1=x, 2=y, 3=image,4=collision x, collision y, text
+            var npcsToLoad = map.npcs.length - 1
             var imagesToLoad = 4
-            while(npcsToLoad >= 0, imagesToLoad -= 1){
+            while(npcsToLoad >= 0){
                 imagesToLoad = 4
                 while(imagesToLoad >= 0){
                     map.npcs[npcsToLoad][3][imagesToLoad].onload = function() {console.log("loaded")}
-                    map.npcs[npcsToLoad][3][imagesToLoad].src = "npcs/npc_mum_1.png" //NOTE: make loop to load all images from all npcs
+                    map.npcs[npcsToLoad][3][imagesToLoad].src =  npcs[map.npcs[npcsToLoad][0]][imagesToLoad]//NOTE: make loop to load all images from all npcs
                     imagesToLoad -= 1
+                }
                 npcsToLoad -= 1
             }
         }
@@ -84,7 +85,7 @@
             yMovement = 0
             xCameraMovement = "fixed"
             yCameraMovement = "free"
-            npcs = [["npcs/npc_mum_0.png","npcs/npc_mum_1.png","npcs/npc_mum_2.png","npcs/npc_mum_3.png"]]
+            npcs = [["npcs/npc_mum_1.png","npcs/npc_mum_0.png","npcs/npc_mum_1.png","npcs/npc_mum_2.png","npcs/npc_mum_3.png"]]
             MapColision = {room0:[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0], [0, 0, 1, 2, 1, 3, 1, 2, 1, 0, 0], [0, 0, 1, 2, 2, 0, 2, 2, 1, 0, 0], [0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], house0:[[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,1,0,],[0,0,0,0,0,0,0,0,],[0,0,0,1,1,"npc 0",0,0,],[0,0,0,1,1,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,3,3,0,0,0,]]}
             currentMapColision = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0], [0, 0, 1, 2, 1, 3, 1, 2, 1, 0, 0], [0, 0, 1, 2, 2, 0, 2, 2, 1, 0, 0], [0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
             //the colision for the current room
@@ -253,8 +254,7 @@
                             npcstocheck = map.npcs.length - 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y + 1 && map.npcs[npcstocheck][4] == player.x){
-                                    map.npcs[npcstocheck][3].src = npcs[map.npcs[npcstocheck][0]][2]
-                                    console.log("All boys leave home someday. It said so on TV.")
+                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][3]
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
@@ -270,8 +270,7 @@
                             npcstocheck = map.npcs.length - 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x - 1){
-                                    map.npcs[npcstocheck][3].src = npcs[map.npcs[npcstocheck][0]][3]
-                                    console.log("All boys leave home someday. It said so on TV.")
+                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][4]
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
@@ -287,8 +286,7 @@
                             npcstocheck = map.npcs.length + 1
                             while(npcstocheck >= 0){
                                 if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x + 1){
-                                    map.npcs[npcstocheck][3].src = npcs[map.npcs[npcstocheck][0]][1]
-                                    console.log("All boys leave home someday. It said so on TV.")
+                                    map.npcs[npcstocheck][3][0] = map.npcs[npcstocheck][3][2]
                                     textshowing = true
                                     onScreenText = '' 
                                     onScreenText += map.npcs[npcstocheck][6]
