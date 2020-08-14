@@ -45,7 +45,6 @@
             loadNPCS()
         }
         function loadRoom0(){
-            player.inOverworld = true
             Object.assign(map, overworldMap)
             Object.assign(player, overworldPos) // where in the overworld the player was when they enterd the room
             player.inOverworld = true
@@ -123,91 +122,93 @@
                     ctx.fillText(onScreenText[0], 10*pixelsize,115*pixelsize)//first line of text
                     ctx.fillText(onScreenText[1], 10*pixelsize,130*pixelsize)//second line of text
                 }
-                if (down == true && player.yMovement == 0 && player.xMovement == 0 && textshowing == false) { // down movement
-                    if (map.colision[player.y + 1][player.x] != 1 && player.Direction == 0 && typeof map.colision[player.y + 1][player.x] != "string"){
-                        player.yMovement = 16
-                        player.y += 1
+                if (textshowing == false){
+                    if (down == true && player.yMovement == 0 && player.xMovement == 0) { // down movement
+                        if (map.colision[player.y + 1][player.x] != 1 && player.Direction == 0 && typeof map.colision[player.y + 1][player.x] != "string"){
+                            player.yMovement = 16
+                            player.y += 1
+                        }
+                        player.Direction = 0
+                    } else if (player.yMovement > 0) {
+                        if (player.yMovement == 8) {
+                            player.AnimationProgress = 1
+                        } else if (player.yMovement == 16) {
+                            player.AnimationProgress = 0
+                        }
+                        if (player.yCameraMovement == "free") {
+                        player.cameray -= pixelsize / 2
+                        } else {
+                            player.playery += pixelsize / 2
+                        }
+                        player.yMovement -= 0.5
+                        if (player.yMovement == 0 && down == false) {
+                            player.AnimationProgress = 2
+                        }
                     }
-                    player.Direction = 0
-                } else if (player.yMovement > 0) {
-                    if (player.yMovement == 8) {
-                        player.AnimationProgress = 1
-                    } else if (player.yMovement == 16) {
-                        player.AnimationProgress = 0
+                    if (up == true && player.yMovement == 0 && player.xMovement == 0) { // up movement
+                        if ( map.colision[player.y - 1][player.x] != 1 && typeof map.colision[player.y - 1][player.x] != "string"){
+                        player.yMovement = -16
+                        player.y -= 1}
+                        player.Direction = 1
+                    } else if (player.yMovement < 0) {
+                        if (player.yMovement == -8) {
+                            player.AnimationProgress = 1
+                        } else if (player.yMovement == -16) {
+                            player.AnimationProgress = 0
+                        }
+                        if (player.yCameraMovement == "free") {
+                            player.cameray += pixelsize / 2
+                        } else {
+                            player.playery -= pixelsize / 2
+                        }
+                        player.yMovement += 0.5
+                        if (player.yMovement == 0 && up == false) {
+                            player.AnimationProgress = 2
+                        }
                     }
-                    if (player.yCameraMovement == "free") {
-                       player.cameray -= pixelsize / 2
-                    } else {
-                        player.playery += pixelsize / 2
+                    if (left == true && player.xMovement == 0 && player.yMovement == 0) { // left movement
+                        if (map.colision[player.y][player.x - 1] != 1 && typeof map.colision[player.y][player.x - 1] != "string"){
+                            player.xMovement = -16
+                            player.x -= 1
+                        }
+                        player.Direction = 2
+                    } else if (player.xMovement < 0) {
+                        if (player.xMovement == -8) {
+                            player.AnimationProgress = 1
+                        } else if (player.xMovement == -16) {
+                            player.AnimationProgress = 0
+                        }
+                        if (player.xCameraMovemnet == "free") {
+                            camerax += pixelsize / 2
+                        } else {
+                            player.playerx -= pixelsize / 2
+                        }
+                        player.xMovement += 0.5
+                        if (player.xMovement == 0 && left == false) {
+                            player.AnimationProgress = 2
+                        }
                     }
-                    player.yMovement -= 0.5
-                    if (player.yMovement == 0 && down == false) {
-                        player.AnimationProgress = 2
-                    }
-                }
-                if (up == true && player.yMovement == 0 && player.xMovement == 0 && textshowing == false) { // up movement
-                    if ( map.colision[player.y - 1][player.x] != 1 && typeof map.colision[player.y - 1][player.x] != "string"){
-                    player.yMovement = -16
-                    player.y -= 1}
-                    player.Direction = 1
-                } else if (player.yMovement < 0) {
-                    if (player.yMovement == -8) {
-                        player.AnimationProgress = 1
-                    } else if (player.yMovement == -16) {
-                        player.AnimationProgress = 0
-                    }
-                    if (player.yCameraMovement == "free") {
-                        player.cameray += pixelsize / 2
-                    } else {
-                        player.playery -= pixelsize / 2
-                    }
-                    player.yMovement += 0.5
-                    if (player.yMovement == 0 && up == false) {
-                        player.AnimationProgress = 2
-                    }
-                }
-                if (left == true && player.xMovement == 0 && player.yMovement == 0 && textshowing == false) { // left movement
-                    if (map.colision[player.y][player.x - 1] != 1 && typeof map.colision[player.y][player.x - 1] != "string"){
-                        player.xMovement = -16
-                        player.x -= 1
-                    }
-                    player.Direction = 2
-                } else if (player.xMovement < 0) {
-                    if (player.xMovement == -8) {
-                        player.AnimationProgress = 1
-                    } else if (player.xMovement == -16) {
-                        player.AnimationProgress = 0
-                    }
-                    if (player.xCameraMovemnet == "free") {
-                        camerax += pixelsize / 2
-                    } else {
-                        player.playerx -= pixelsize / 2
-                    }
-                    player.xMovement += 0.5
-                    if (player.xMovement == 0 && left == false) {
-                        player.AnimationProgress = 2
-                    }
-                }
-                if (right == true && player.xMovement == 0 && player.yMovement == 0 && textshowing == false) { // right movement
-                    if (map.colision[player.y][player.x + 1] != 1 && typeof map.colision[player.y][player.x + 1] != "string"){
-                        player.xMovement = 16
-                        player.x += 1
-                    }
-                    player.Direction = 3
-                } else if (player.xMovement > 0) {
-                    if (player.xMovement == 8) {
-                        player.AnimationProgress = 1
-                    } else if (player.xMovement == 16) {
-                        player.AnimationProgress = 0
-                    }
-                    if (player.xCameraMovemnet == "free") {
-                        camerax -= pixelsize / 2
-                    } else {
-                        player.playerx += pixelsize / 2
-                    }
-                    player.xMovement -= 0.5
-                    if (player.xMovement == 0 && right == false) {
-                        player.AnimationProgress = 2
+                    if (right == true && player.xMovement == 0 && player.yMovement == 0) { // right movement
+                        if (map.colision[player.y][player.x + 1] != 1 && typeof map.colision[player.y][player.x + 1] != "string"){
+                            player.xMovement = 16
+                            player.x += 1
+                        }
+                        player.Direction = 3
+                    } else if (player.xMovement > 0) {
+                        if (player.xMovement == 8) {
+                            player.AnimationProgress = 1
+                        } else if (player.xMovement == 16) {
+                            player.AnimationProgress = 0
+                        }
+                        if (player.xCameraMovemnet == "free") {
+                            camerax -= pixelsize / 2
+                        } else {
+                            player.playerx += pixelsize / 2
+                        }
+                        player.xMovement -= 0.5
+                        if (player.xMovement == 0 && right == false) {
+                            player.AnimationProgress = 2
+                        }
                     }
                 }
                 //speciel tile handlers
