@@ -2,6 +2,7 @@ var left = false
 var right = false
 var down = false
 var up = false
+var enter = false
 var keyX = false
 document.addEventListener('keydown', (event) => {
     if (event.key == 'ArrowLeft') {
@@ -52,5 +53,15 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
     if (event.key == 'x') {
         keyX = false
+    }
+})
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'Enter') {
+        enter = true
+    }
+})
+document.addEventListener('keyup', (event) => {
+    if (event.key == 'Enter') {
+        enter = false
     }
 })
