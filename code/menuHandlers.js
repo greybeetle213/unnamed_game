@@ -16,4 +16,22 @@ function menuHandler(){
         selectedMenuSlot -= 1
         up = false
     }
+    if (keyX == true && menu == "main"){
+        if (selectedMenuSlot == 6){
+            menu = "none"
+        }
+        if (selectedMenuSlot == 2){
+            menu = "item"
+        }
+    }
+    if (menu == "item"){
+        if (left == true && bagPockets[3] != 0){
+            bagPockets[3] -= 1
+            left = false
+        }
+        if (right == true && 2 > bagPockets[3]){
+            bagPockets[3] += 1
+            right = false
+        }
+    }
 }

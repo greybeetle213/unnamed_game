@@ -18,7 +18,7 @@ function draw(){
         ctx.fillStyle = "#FFFFFF"
         ctx.fillRect(121*pixelsize, 5*pixelsize,50*pixelsize, 100*pixelsize)
         ctx.fillStyle = "#000000"
-        ctx.lineWidth = "5"
+        ctx.lineWidth = String(1*pixelsize)
         ctx.rect(121*pixelsize, 5*pixelsize,50*pixelsize, 100*pixelsize)
         ctx.stroke()
         print("pokemon", 130*pixelsize, 11*pixelsize, pixelsize)
@@ -29,5 +29,21 @@ function draw(){
         print("option", 130*pixelsize, 81*pixelsize, pixelsize)
         print("exit", 130*pixelsize, 95*pixelsize, pixelsize)
         ctx.drawImage(menuSelecter, 122*pixelsize, 14*selectedMenuSlot*pixelsize+11*pixelsize,7*pixelsize,7*pixelsize)
+    }
+    if (menu == "item"){
+        ctx.fillStyle = "#0000FF"
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+        ctx.fillStyle = "#9999FF"
+        ctx.fillRect(0,0,canvas.width,canvas.height-40*pixelsize)
+        ctx.fillStyle = "#DDAA11"
+        ctx.fillRect(pixelsize*2,pixelsize*2, canvas.width/3+pixelsize*10, 20*pixelsize)
+        ctx.fillRect(canvas.width/3+pixelsize*10,pixelsize*2, (canvas.width/3)*2-pixelsize*12, canvas.height-42*pixelsize)
+        ctx.fillStyle = "#EEEEEE"
+        ctx.fillRect(canvas.width/3+pixelsize*13,pixelsize*5, (canvas.width/3)*2-pixelsize*18, canvas.height-48*pixelsize)
+        print(bagPockets[bagPockets[3]][0], 3*pixelsize, 8*pixelsize, pixelsize)
+        ctx.drawImage(bag, 9*pixelsize, 30*pixelsize, bag.width*pixelsize, bag.height*pixelsize)
+        for(counter = bagPockets[bagPockets[3]][1].length-1;counter <= 0;counter--){
+            print(itemDex[bagPockets[bagPockets[3]][1][counter][0]][0], 75*pixelsize, 10*pixelsize, pixelsize)
+        }
     }
 }

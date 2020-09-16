@@ -7,6 +7,7 @@ function init() {
     ctx.imageSmoothingEnabled = false // remove blurry pixels
     ctx = document.getElementById("canvas").getContext("2d") // redefine ctx
     pixelsize = document.getElementById("canvas").width / 176 // define the size of  pixel all sizes are based around this
+    canvas = document.getElementById("canvas")
     room1 = new Image()
     room1.src = "room0.png"
     textbox = new Image()
@@ -59,6 +60,10 @@ function init() {
     Directon = 0//
     AnimaionProgress = 2
     startingPos = [0,0]
+    bag = new Image
+    itemDex = [["pokeball", "item", ["a device for enslaving pokemon and", "forcing them into dog fights"]], ["pokedex", "KeyItem", ["lets you keep track of enslaved pokemon"]], ["hm cut", "TmHm", ["lets you cut down weeds", "if taught to a pokemon"]] ]
+    bag.src = "other_images/bag.png"
+    bagPockets = [["items", [[0, 1]] ],["key items", [[1, 1]] ],["tms and hms", [[2,1]] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player]
     map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
     loadNPCS()
     player = { x: x, y: y, playerx: playerx, playery: playery, camerax: camerax, cameray: cameray, image: playerImage, AnimationProgress: AnimaionProgress, Direction: Directon, xCameraMovement: xCameraMovement, yCameraMovement: yCameraMovement, xMovement: xMovement, yMovement: yMovement, inOverworld:true}
