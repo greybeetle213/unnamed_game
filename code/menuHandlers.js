@@ -27,11 +27,27 @@ function menuHandler(){
     if (menu == "item"){
         if (left == true && bagPockets[3] != 0){
             bagPockets[3] -= 1
+            selectedItem = 0
             left = false
         }
         if (right == true && 2 > bagPockets[3]){
             bagPockets[3] += 1
+            selectedItem = 0
             right = false
         }
-    }
+        if (up == true && selectedItem != 0){
+            selectedItem -= 1
+            up = false
+        }else if (selectedItem == 0 && up == true && scrolledInBag > 0){
+            scrolledInBag -= 1
+            up = false
+        }
+        if (down == true && selectedItem < bagPockets[bagPockets[3]][1].length-1 && selectedItem < 9){
+            selectedItem += 1
+            down = false
+        }else if (selectedItem == 9 && down == true && bagPockets[bagPockets[3]][1].length-1-scrolledInBag > 9){
+            scrolledInBag += 1
+            down = false
+        }
+    } 
 }

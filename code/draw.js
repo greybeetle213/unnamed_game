@@ -42,8 +42,19 @@ function draw(){
         ctx.fillRect(canvas.width/3+pixelsize*13,pixelsize*5, (canvas.width/3)*2-pixelsize*18, canvas.height-48*pixelsize)
         print(bagPockets[bagPockets[3]][0], 3*pixelsize, 8*pixelsize, pixelsize)
         ctx.drawImage(bag, 9*pixelsize, 30*pixelsize, bag.width*pixelsize, bag.height*pixelsize)
-        for(counter = bagPockets[bagPockets[3]][1].length-1;counter <= 0;counter--){
-            print(itemDex[bagPockets[bagPockets[3]][1][counter][0]][0], 75*pixelsize, 10*pixelsize, pixelsize)
+        var lineHeight = 0
+        for(counter = bagPockets[bagPockets[3]][1].length-1;counter >= 0;counter--){
+            print("x"+String(bagPockets[bagPockets[3]][1][counter-scrolledInBag][1]), 150*pixelsize, 10*pixelsize+lineHeight*pixelsize, pixelsize)
+            print(itemDex[bagPockets[bagPockets[3]][1][counter-scrolledInBag][0]][0], 85*pixelsize, 10*pixelsize+lineHeight*pixelsize, pixelsize)
+            lineHeight += 8
+            if(lineHeight == 80){
+                break
+            }
+        }
+        if(bagPockets[bagPockets[3]][1].length != 0){
+            ctx.drawImage(menuSelecter, 75*pixelsize, 10*pixelsize+8*pixelsize*selectedItem, 7*pixelsize, 7*pixelsize)
+            print(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][2][0], 5*pixelsize, 103*pixelsize, pixelsize)
+            print(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][2][1], 5*pixelsize, 113*pixelsize, pixelsize)
         }
     }
 }

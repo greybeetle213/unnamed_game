@@ -1,8 +1,8 @@
 function print(writing,x,y,scale){
     letterx = 0
-    for(counter = 0; counter < writing.length; counter += 1){
-            if (writing[counter] != " "){
-            ctx.drawImage(text[alphabet.findIndex(function(letter){return letter == writing[counter]})], x+letterx,y,5*scale,7*scale)
+    for(printcounter = 0; printcounter < writing.length; printcounter += 1){
+            if (writing[printcounter] != " "){
+            ctx.drawImage(text[alphabet.findIndex(function(letter){return letter == writing[printcounter]})], x+letterx,y,5*scale,7*scale)
             }
         letterx += 5*scale + 0.5*scale
     }
