@@ -23,6 +23,9 @@ function menuHandler(){
         if (selectedMenuSlot == 2){
             menu = "item"
         }
+        if (selectedMenuSlot == 0){
+            menu = "pkmn"
+        }
     }
     if (menu == "item"){
         if (left == true && bagPockets[3] != 0){

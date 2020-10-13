@@ -29,8 +29,7 @@ function draw(){
         print("option", 130*pixelsize, 81*pixelsize, pixelsize)
         print("exit", 130*pixelsize, 95*pixelsize, pixelsize)
         ctx.drawImage(menuSelecter, 122*pixelsize, 14*selectedMenuSlot*pixelsize+11*pixelsize,7*pixelsize,7*pixelsize)
-    }
-    if (menu == "item"){
+    }else if (menu == "item"){
         ctx.fillStyle = "#0000FF"
         ctx.fillRect(0,0,canvas.width,canvas.height)
         ctx.fillStyle = "#9999FF"
@@ -38,7 +37,7 @@ function draw(){
         ctx.fillStyle = "#DDAA11"
         ctx.fillRect(pixelsize*2,pixelsize*2, canvas.width/3+pixelsize*10, 20*pixelsize)
         ctx.fillRect(canvas.width/3+pixelsize*10,pixelsize*2, (canvas.width/3)*2-pixelsize*12, canvas.height-42*pixelsize)
-        ctx.fillStyle = "#EEEEEE"
+        ctx.fillStyle = "#EEEEEEEE"
         ctx.fillRect(canvas.width/3+pixelsize*13,pixelsize*5, (canvas.width/3)*2-pixelsize*18, canvas.height-48*pixelsize)
         print(bagPockets[bagPockets[3]][0], 3*pixelsize, 8*pixelsize, pixelsize)
         ctx.drawImage(bag, 9*pixelsize, 30*pixelsize, bag.width*pixelsize, bag.height*pixelsize)
@@ -56,5 +55,15 @@ function draw(){
             print(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][2][0], 5*pixelsize, 103*pixelsize, pixelsize)
             print(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][2][1], 5*pixelsize, 113*pixelsize, pixelsize)
         }
+    }else if(menu == "pkmn"){
+        ctx.fillStyle = "darkblue"
+        ctx.fillRect(0,0, canvas.width, canvas.height)
+        ctx.fillStyle = "blue"
+        ctx.fillRect(25*pixelsize+52*pixelsize,3*pixelsize,96*pixelsize, 20*pixelsize)
+        ctx.fillRect(25*pixelsize+52*pixelsize,27*pixelsize,96*pixelsize, 20*pixelsize)
+        ctx.fillRect(25*pixelsize+52*pixelsize,51*pixelsize,96*pixelsize, 20*pixelsize)
+        ctx.fillRect(25*pixelsize+52*pixelsize,75*pixelsize,96*pixelsize, 20*pixelsize)
+        ctx.fillRect(25*pixelsize+52*pixelsize,99*pixelsize,96*pixelsize, 20*pixelsize)
+        ctx.fillRect(7*pixelsize,42*pixelsize,63*pixelsize,36*pixelsize)
     }
 }
