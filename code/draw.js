@@ -65,5 +65,6 @@ function draw(){
         ctx.fillRect(25*pixelsize+52*pixelsize,75*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(25*pixelsize+52*pixelsize,99*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(7*pixelsize,42*pixelsize,63*pixelsize,36*pixelsize)
+        print(pokedex[party[0][0]][0].toLowerCase(), 12*pixelsize, 65*pixelsize, pixelsize)
     }
 }

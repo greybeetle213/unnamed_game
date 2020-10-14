@@ -67,7 +67,7 @@ function init() {
     bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
     scrolledInBag = 0 //how far down you are scrolled in the item viewer
     selectedItem = 0
-    party = [['3','100','0','1','3','2','','', 20]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
+    party = [[3,100,0,1,3,2,'','', 20]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
     map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
     loadNPCS()
     player = { x: x, y: y, playerx: playerx, playery: playery, camerax: camerax, cameray: cameray, image: playerImage, AnimationProgress: AnimaionProgress, Direction: Directon, xCameraMovement: xCameraMovement, yCameraMovement: yCameraMovement, xMovement: xMovement, yMovement: yMovement, inOverworld:true}
