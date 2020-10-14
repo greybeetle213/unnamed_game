@@ -66,5 +66,11 @@ function draw(){
         ctx.fillRect(25*pixelsize+52*pixelsize,99*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(7*pixelsize,42*pixelsize,63*pixelsize,36*pixelsize)
         print(pokedex[party[0][0]][0].toLowerCase(), 12*pixelsize, 65*pixelsize, pixelsize)
+        print("lvl "+String(party[0][1]), 0,0, pixelsize)
+        ctx.fillStyle = "black"
+        ctx.fillRect(23*pixelsize,59*pixelsize,46*pixelsize,4*pixelsize)
+        ctx.fillStyle = "green"
+        ctx.fillRect(24*pixelsize,60*pixelsize,44*pixelsize,2*pixelsize)
+        ctx.drawImage(pokemonShapes[pokedex[party[0][0]][1][5]], 8*pixelsize, 47*pixelsize, 16*pixelsize, 16*pixelsize)
     }
 }

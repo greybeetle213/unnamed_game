@@ -62,7 +62,15 @@ function init() {
     startingPos = [0,0]
     bag = new Image
     itemDex = [["pokeball", "item", ["a device for capturing pokemon", ""]], ["greatball", "item", ["a better device for capturing", "pokemon"]], ["pokedex", "KeyItem", ["lets you keep track of captured", "pokemon"]], ["hm 01", "Tm Hm", ["cuts down small trees", "if taught to a pokemon"]] ]
-    pokedex = [['Bulbasaur',['10','4','5','5','4'], ['10', '3']],['Ivysaur', ['10', '3']],['Venusaur', ['10', '3']],['Charmander',['10','4','5','5','4']],['Charmelion'],['Charizard']] //Pokedex. [pokemon name, [base hp atk def sp.atk spd], [move, level.learned]]
+    pokedex = [['Bulbasaur',['10','4','5','5','4', 0], ['10', '3']],['Ivysaur', ['10', '3']],['Venusaur', ['10', '3']],['Charmander',['10','4','5','5','4', 1],[]],['Charmelion'],['Charizard']] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape], [move, level.learned]]
+    pokemonShapes = [new Image, new Image, new Image, new Image,new Image, new Image, new Image, new Image,new Image, new Image]
+    for (counter = 0; counter != 10; counter ++){
+        if (counter != 10){ 
+            pokemonShapes[counter].src = "pokemon/shape_0" + counter + ".png"
+        }else{
+            pokemonShapes[10].src = "pokemon/shape_10.png"
+        }
+    }
     bag.src = "other_images/bag.png"
     bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
     scrolledInBag = 0 //how far down you are scrolled in the item viewer
