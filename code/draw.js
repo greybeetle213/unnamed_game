@@ -64,13 +64,45 @@ function draw(){
         ctx.fillRect(25*pixelsize+52*pixelsize,51*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(25*pixelsize+52*pixelsize,75*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(25*pixelsize+52*pixelsize,99*pixelsize,96*pixelsize, 20*pixelsize)
-        ctx.fillRect(7*pixelsize,42*pixelsize,63*pixelsize,36*pixelsize)
-        print(pokedex[party[0][0]][0].toLowerCase(), 12*pixelsize, 65*pixelsize, pixelsize)
-        print("lvl "+String(party[0][1]), 0,0, pixelsize)
+        ctx.fillRect(1*pixelsize,34*pixelsize,75*pixelsize, 30*pixelsize)
+        if (party[0][7] == ""){
+            print(pokedex[party[0][0]][0].toLowerCase(), 12*pixelsize-6*pixelsize, 65*pixelsize-12*pixelsize, pixelsize)
+        }else{
+            print(party[0][7].toLowerCase(), 12*pixelsize-6*pixelsize, 65*pixelsize-12*pixelsize, pixelsize)
+        }
+        print("lvl " + String(party[0][1]), 30*pixelsize-6*pixelsize,50*pixelsize-12*pixelsize, pixelsize)
         ctx.fillStyle = "black"
-        ctx.fillRect(23*pixelsize,59*pixelsize,46*pixelsize,4*pixelsize)
-        ctx.fillStyle = "green"
-        ctx.fillRect(24*pixelsize,60*pixelsize,44*pixelsize,2*pixelsize)
-        ctx.drawImage(pokemonShapes[pokedex[party[0][0]][1][5]], 8*pixelsize, 47*pixelsize, 16*pixelsize, 16*pixelsize)
+        ctx.fillRect(23*pixelsize-6*pixelsize,59*pixelsize-12*pixelsize,57*pixelsize,4*pixelsize)
+        var HPTODraw = (party[0][8]/Math.round(pokedex[party[0][0]][1][0]+pokedex[party[0][0]][1][0]/10*party[0][1]))*56
+        if(HPTODraw > 28){
+            ctx.fillStyle = "green"
+        }else if(HPTODraw > 14){
+            ctx.fillStyle= "orange"
+        }else{
+            ctx.fillStyle = "red"
+        }
+        //var HPTODraw = (party[counter][8]/math.round(pokedex[party[counter][0]][1][0]+pokedex[party[counter][0]][1][0]/30*level))*75
+        ctx.fillRect(24*pixelsize-6*pixelsize,60*pixelsize-12*pixelsize,HPTODraw*pixelsize,2*pixelsize)
+        ctx.drawImage(pokemonShapes[pokedex[party[0][0]][1][5]], 8*pixelsize-6*pixelsize, 47*pixelsize-12*pixelsize, 16*pixelsize, 16*pixelsize)
+        for (counter = 1; counter < party.length; counter++){
+            if (party[counter][7] == ""){
+                print(pokedex[party[counter][0]][0].toLowerCase(), 12*pixelsize, (3+(counter-1)*24)*pixelsize, pixelsize)
+            }else{
+                print(party[counter][7].toLowerCase(), 95*pixelsize, (3+(counter-1)*24)*pixelsize, pixelsize)
+            }
+            print("lvl " + String(party[counter][1]), 95*pixelsize,((3+(counter-1)*24)+13)*pixelsize, pixelsize)
+            ctx.fillStyle = "black"
+            ctx.fillRect(95*pixelsize,((3+(counter-1)*24)+8)*pixelsize,76*pixelsize,4*pixelsize)
+            var HPTODraw = (party[counter][8]/Math.round(pokedex[party[counter][0]][1][0]+pokedex[party[counter][0]][1][0]/10*party[counter][1]))*75
+            if(HPTODraw > 37){
+                ctx.fillStyle = "green"
+            }else if(HPTODraw > 19){
+                ctx.fillStyle= "orange"
+            }else{
+                ctx.fillStyle = "red"
+            }
+            ctx.fillRect(96*pixelsize,((3+(counter-1)*24)+9)*pixelsize,HPTODraw*pixelsize,2*pixelsize)
+            ctx.drawImage(pokemonShapes[pokedex[party[counter][0]][1][5]], 78*pixelsize, ((3+(counter-1)*24)+3)*pixelsize, 16*pixelsize, 16*pixelsize)
+        }
     }
 }
