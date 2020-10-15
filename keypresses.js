@@ -5,9 +5,10 @@ var up = false
 var enter = false
 var keyX = false
 
-document.getElementById("Enter").addEventListener("mouseup", function(){
+document.getElementById("Enter").onmouseup = ""
+function Enter(){
     enter = true
-})
+}
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     alert("mobile")
 }else{
