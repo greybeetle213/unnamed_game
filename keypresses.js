@@ -5,7 +5,7 @@ var up = false
 var enter = false
 var keyX = false
 
-document.getElementById("Enter").addEventListener("touchstart", function(){
+document.getElementById("Enter").addEventListener("mouseup", function(){
     enter = true
 })
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
