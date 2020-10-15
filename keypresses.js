@@ -6,6 +6,7 @@ var enter = false
 var keyX = false
 
 function touchMode(){
+    alert("touch mode on")
     var counter = 0
     for (counter = 0; counter < 6; counter ++){
         document.getElementById("touch"+counter).style.visibility = "visible"
