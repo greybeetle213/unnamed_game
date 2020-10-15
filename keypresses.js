@@ -5,9 +5,9 @@ var up = false
 var enter = false
 var keyX = false
 
-function TouchEnter(){
+document.getElementById("Enter").addEventListener("touchstart", function(){
     enter = true
-}
+})
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     alert("mobile")
 }else{
