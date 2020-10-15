@@ -62,7 +62,7 @@ function init() {
     startingPos = [0,0]
     bag = new Image
     itemDex = [["pokeball", "item", ["a device for capturing pokemon", ""]], ["greatball", "item", ["a better device for capturing", "pokemon"]], ["pokedex", "KeyItem", ["lets you keep track of captured", "pokemon"]], ["hm 01", "Tm Hm", ["cuts down small trees", "if taught to a pokemon"]] ]
-    pokedex = [['Bulbasaur',[10,4,5,5,4, 0], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['Charmander',[10,4,5,5,4, 1],[]],['Charmelion'],['Charizard']] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape], [move, level.learned]]
+    pokedex = [['Bulbasaur',[49,4,5,5,4, 0], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['Charmander',[39,4,5,5,4, 1],[]],['Charmelion'],['Charizard'],['Caterpie',[10, 5,5,5,5,1],[]]] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape], [move, level.learned]]
     pokemonShapes = [new Image, new Image, new Image, new Image,new Image, new Image, new Image, new Image,new Image, new Image]
     for (counter = 0; counter != 10; counter ++){
         if (counter != 10){ 
@@ -75,7 +75,10 @@ function init() {
     bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
     scrolledInBag = 0 //how far down you are scrolled in the item viewer
     selectedItem = 0
-    party = [[0,70,0,1,3,2,'','', 80],[3,100,0,1,3,2,'','nicknameee', 41],[0,70,0,1,3,2,'','Fredrick', 80]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
+    party = [[0,70,0,1,3,2,'','', 154],[3,100,0,1,3,2,'','', 196],[0,70,0,1,3,2,'','Fredrick', 154],[3,100,0,1,3,2,'','mandy', 196]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
+    selectedPartySlot = 0
+    partySubMenu = false
+    movingPokemon = -1
     map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
     loadNPCS()
     player = { x: x, y: y, playerx: playerx, playery: playery, camerax: camerax, cameray: cameray, image: playerImage, AnimationProgress: AnimaionProgress, Direction: Directon, xCameraMovement: xCameraMovement, yCameraMovement: yCameraMovement, xMovement: xMovement, yMovement: yMovement, inOverworld:true}

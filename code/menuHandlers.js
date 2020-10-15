@@ -3,8 +3,9 @@ function menuHandler(){
         if (menu == "none"){ 
             selectedMenuSlot = 0
             menu = "main" // set the menu to be the one with that lets you chose between pokemon, bag, profile, pokedex, ect.
-        } else {
+        } else if(partySubMenu == false && movingPokemon == -1){
             menu = "none"
+            selectedMenuSlot = 0
         }
         enter = false
     }
@@ -23,8 +24,10 @@ function menuHandler(){
         if (selectedMenuSlot == 2){
             menu = "item"
         }
-        if (selectedMenuSlot == 0){
+        if (selectedMenuSlot == 0 && party.length != 0){
             menu = "pkmn"
+            keyX = false
+            selectedPartySlot = 0
         }
     }
     if (menu == "item"){
@@ -52,5 +55,48 @@ function menuHandler(){
             scrolledInBag += 1
             down = false
         }
-    } 
+    }else if(menu == "pkmn"){
+        if (partySubMenu == false){
+            if (down == true && selectedPartySlot < party.length-1){
+                selectedPartySlot += 1
+                down = false
+            }
+            if (up == true && selectedPartySlot != 0){
+                selectedPartySlot -= 1
+                up = false
+            }
+            if (left == true){
+                selectedPartySlot = 0
+            }
+            if (right == true && party.length > 1){
+                selectedPartySlot = 1
+            }
+        }
+        if (keyX == true && partySubMenu == false && movingPokemon == -1){
+            partySubMenu = true
+            keyX = false
+        }
+        if (keyX == true && movingPokemon != -1){
+            party.splice(selectedPartySlot, 0, party.splice(movingPokemon,1)[0])
+            movingPokemon = -1
+            keyX = false
+        }
+        if (partySubMenu == true){
+            if(up == true && selectedMenuSlot != 0){
+                selectedMenuSlot -=1
+            }else if(down == true && selectedMenuSlot < 1){
+                selectedMenuSlot += 1
+                down = false
+            }else if(keyX == true){
+                if (selectedMenuSlot == 1){
+                    partySubMenu = false
+                    keyX = false
+                }else if (selectedMenuSlot == 0){
+                    movingPokemon = selectedPartySlot
+                    partySubMenu = false
+                    keyX = false
+                } 
+            }
+        } 
+    }
 }

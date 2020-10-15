@@ -58,6 +58,12 @@ function draw(){
     }else if(menu == "pkmn"){
         ctx.fillStyle = "darkblue"
         ctx.fillRect(0,0, canvas.width, canvas.height)
+        ctx.fillStyle = "orange"
+        if (selectedPartySlot == 0){
+            ctx.fillRect(0*pixelsize,33*pixelsize,77*pixelsize, 32*pixelsize)
+        }else{
+            ctx.fillRect(76*pixelsize, ((3+(selectedPartySlot-1)*24)-1)*pixelsize,98*pixelsize,22*pixelsize)
+        }
         ctx.fillStyle = "blue"
         ctx.fillRect(25*pixelsize+52*pixelsize,3*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(25*pixelsize+52*pixelsize,27*pixelsize,96*pixelsize, 20*pixelsize)
@@ -73,7 +79,7 @@ function draw(){
         print("lvl " + String(party[0][1]), 30*pixelsize-6*pixelsize,50*pixelsize-12*pixelsize, pixelsize)
         ctx.fillStyle = "black"
         ctx.fillRect(23*pixelsize-6*pixelsize,59*pixelsize-12*pixelsize,57*pixelsize,4*pixelsize)
-        var HPTODraw = (party[0][8]/Math.round(pokedex[party[0][0]][1][0]+pokedex[party[0][0]][1][0]/10*party[0][1]))*56
+        var HPTODraw = (party[0][8]/Math.round((((8+2*pokedex[party[0][0]][1][0]+(0/4)+100) * party[0][1])/100)+10))*55
         if(HPTODraw > 28){
             ctx.fillStyle = "green"
         }else if(HPTODraw > 14){
@@ -81,19 +87,18 @@ function draw(){
         }else{
             ctx.fillStyle = "red"
         }
-        //var HPTODraw = (party[counter][8]/math.round(pokedex[party[counter][0]][1][0]+pokedex[party[counter][0]][1][0]/30*level))*75
         ctx.fillRect(24*pixelsize-6*pixelsize,60*pixelsize-12*pixelsize,HPTODraw*pixelsize,2*pixelsize)
         ctx.drawImage(pokemonShapes[pokedex[party[0][0]][1][5]], 8*pixelsize-6*pixelsize, 47*pixelsize-12*pixelsize, 16*pixelsize, 16*pixelsize)
         for (counter = 1; counter < party.length; counter++){
             if (party[counter][7] == ""){
-                print(pokedex[party[counter][0]][0].toLowerCase(), 12*pixelsize, (3+(counter-1)*24)*pixelsize, pixelsize)
+                print(pokedex[party[counter][0]][0].toLowerCase(), 95*pixelsize, (3+(counter-1)*24)*pixelsize, pixelsize)
             }else{
                 print(party[counter][7].toLowerCase(), 95*pixelsize, (3+(counter-1)*24)*pixelsize, pixelsize)
             }
             print("lvl " + String(party[counter][1]), 95*pixelsize,((3+(counter-1)*24)+13)*pixelsize, pixelsize)
             ctx.fillStyle = "black"
             ctx.fillRect(95*pixelsize,((3+(counter-1)*24)+8)*pixelsize,76*pixelsize,4*pixelsize)
-            var HPTODraw = (party[counter][8]/Math.round(pokedex[party[counter][0]][1][0]+pokedex[party[counter][0]][1][0]/10*party[counter][1]))*75
+            var HPTODraw = (party[counter][8]/((((8+2*pokedex[party[counter][0]][1][0]+(0/4)+100) * party[counter][1])/100)+10))*74
             if(HPTODraw > 37){
                 ctx.fillStyle = "green"
             }else if(HPTODraw > 19){
@@ -103,6 +108,24 @@ function draw(){
             }
             ctx.fillRect(96*pixelsize,((3+(counter-1)*24)+9)*pixelsize,HPTODraw*pixelsize,2*pixelsize)
             ctx.drawImage(pokemonShapes[pokedex[party[counter][0]][1][5]], 78*pixelsize, ((3+(counter-1)*24)+3)*pixelsize, 16*pixelsize, 16*pixelsize)
+        }
+        if (partySubMenu == true){
+            var partyMenuX = 0
+            var partyMenuY = 0
+            if (selectedPartySlot == 0){
+                partyMenuX = 1*pixelsize
+                partyMenuY = 34*pixelsize
+            }else{
+                partyMenuX = 77 *pixelsize
+                partyMenuY = (3+(selectedPartySlot-1)*24)*pixelsize
+            }
+            ctx.fillStyle = "black"
+            ctx.fillRect(partyMenuX,partyMenuY,34*pixelsize,19*pixelsize)
+            ctx.fillStyle = "white"
+            ctx.fillRect(1*pixelsize+partyMenuX,1*pixelsize+partyMenuY,32*pixelsize,17*pixelsize)
+            ctx.drawImage(menuSelecter, 2*pixelsize+partyMenuX, 2*pixelsize+selectedMenuSlot*7*pixelsize+partyMenuY, 7*pixelsize, 7*pixelsize)
+            print("move",10*pixelsize+partyMenuX,2*pixelsize+partyMenuY,pixelsize)
+            print("exit", 10*pixelsize+partyMenuX, 10*pixelsize+partyMenuY, pixelsize)
         }
     }
 }
