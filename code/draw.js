@@ -71,6 +71,8 @@ function draw(){
         ctx.fillRect(25*pixelsize+52*pixelsize,75*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(25*pixelsize+52*pixelsize,99*pixelsize,96*pixelsize, 20*pixelsize)
         ctx.fillRect(1*pixelsize,34*pixelsize,75*pixelsize, 30*pixelsize)
+        ctx.fillStyle = "white"
+        ctx.fillRect(1*pixelsize,canvas.height-21*pixelsize,canvas.width-2*pixelsize, 20*pixelsize)
         if (party[0][7] == ""){
             print(pokedex[party[0][0]][0].toLowerCase(), 12*pixelsize-6*pixelsize, 65*pixelsize-12*pixelsize, pixelsize)
         }else{
@@ -126,6 +128,11 @@ function draw(){
             ctx.drawImage(menuSelecter, 2*pixelsize+partyMenuX, 2*pixelsize+selectedMenuSlot*7*pixelsize+partyMenuY, 7*pixelsize, 7*pixelsize)
             print("move",10*pixelsize+partyMenuX,2*pixelsize+partyMenuY,pixelsize)
             print("exit", 10*pixelsize+partyMenuX, 10*pixelsize+partyMenuY, pixelsize)
+        }
+        if (movingPokemon == -1){
+            print("select a pokemon.",2*pixelsize,canvas.height-20*pixelsize, pixelsize)
+        }else{
+            print("move to where?",2*pixelsize,canvas.height-20*pixelsize, pixelsize)
         }
     }
 }
