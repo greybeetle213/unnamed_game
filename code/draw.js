@@ -100,7 +100,7 @@ function draw(){
             print("lvl " + String(party[counter][1]), 95*pixelsize,((3+(counter-1)*24)+13)*pixelsize, pixelsize)
             ctx.fillStyle = "black"
             ctx.fillRect(95*pixelsize,((3+(counter-1)*24)+8)*pixelsize,76*pixelsize,4*pixelsize)
-            var HPTODraw = (party[counter][8]/((((8+2*pokedex[party[counter][0]][1][0]+(0/4)+100) * party[counter][1])/100)+10))*74
+            var HPTODraw = (party[counter][8]/Math.round((((8+2*pokedex[party[counter][0]][1][0]+(0/4)+100) * party[counter][1])/100)+10))*74
             if(HPTODraw > 37){
                 ctx.fillStyle = "green"
             }else if(HPTODraw > 19){
@@ -122,17 +122,46 @@ function draw(){
                 partyMenuY = (3+(selectedPartySlot-1)*24)*pixelsize
             }
             ctx.fillStyle = "black"
-            ctx.fillRect(partyMenuX,partyMenuY,34*pixelsize,19*pixelsize)
+            ctx.fillRect(partyMenuX,partyMenuY,34*pixelsize,27*pixelsize)
             ctx.fillStyle = "white"
-            ctx.fillRect(1*pixelsize+partyMenuX,1*pixelsize+partyMenuY,32*pixelsize,17*pixelsize)
+            ctx.fillRect(1*pixelsize+partyMenuX,1*pixelsize+partyMenuY,32*pixelsize,25*pixelsize)
             ctx.drawImage(menuSelecter, 2*pixelsize+partyMenuX, 2*pixelsize+selectedMenuSlot*7*pixelsize+partyMenuY, 7*pixelsize, 7*pixelsize)
             print("move",10*pixelsize+partyMenuX,2*pixelsize+partyMenuY,pixelsize)
-            print("exit", 10*pixelsize+partyMenuX, 10*pixelsize+partyMenuY, pixelsize)
+            print("info" ,10*pixelsize+partyMenuX, 10*pixelsize+partyMenuY, pixelsize)
+            print("exit", 10*pixelsize+partyMenuX, 18*pixelsize+partyMenuY, pixelsize)
         }
         if (movingPokemon == -1){
             print("select a pokemon.",2*pixelsize,canvas.height-20*pixelsize, pixelsize)
         }else{
             print("move to where?",2*pixelsize,canvas.height-20*pixelsize, pixelsize)
         }
+    }else if(menu == "pkmninfo"){
+        ctx.fillStyle = "yellow"
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+        miscImage.src = "pokemon/front_"+pokedex[party[selectedPartySlot][0]][0].toLowerCase()+".png"
+        ctx.fillStyle = "orange"
+        ctx.fillRect(0, 0, canvas.width, 9*pixelsize)
+        ctx.fillStyle = "purple"
+        ctx.fillRect(0,9*pixelsize,68*pixelsize,75*pixelsize)
+        ctx.fillStyle = "white"
+        ctx.fillRect(2*pixelsize,18*pixelsize, 64*pixelsize, 64*pixelsize)
+        ctx.drawImage(miscImage, 2*pixelsize,18*pixelsize,miscImage.width*pixelsize,miscImage.height*pixelsize)
+        print(pokedex[party[selectedPartySlot][0]][0],1*pixelsize,10*pixelsize, pixelsize)
+        print("pokemon info", 1*pixelsize, 1*pixelsize, pixelsize)
+        ctx.fillStyle = "lightgrey"
+        ctx.fillRect(70*pixelsize, 11*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("hp", 75*pixelsize,12*pixelsize, pixelsize)
+        print(party[selectedPartySlot][8]+"/"+Math.round((((8+2*pokedex[party[selectedPartySlot][0]][1][0]+(0/4)+100) * party[selectedPartySlot][1])/100)+10), canvas.width-40*pixelsize,12*pixelsize, pixelsize)
+        ctx.fillRect(70*pixelsize, 23*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("atk", 72*pixelsize, 24*pixelsize, pixelsize)
+        print(String(Math.round((((8+2*pokedex[party[selectedPartySlot][0]][1][1]+(0/4)+100) * party[selectedPartySlot][1])/100)+5)), canvas.width-18*pixelsize,24*pixelsize,pixelsize)
+        ctx.fillRect(70*pixelsize, 35*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("def", 72*pixelsize, 36*pixelsize, pixelsize)
+        ctx.fillRect(70*pixelsize, 47*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("sp.atk", 72*pixelsize, 48*pixelsize, pixelsize)
+        ctx.fillRect(70*pixelsize, 59*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("sp.def", 72*pixelsize, 60*pixelsize, pixelsize)
+        ctx.fillRect(70*pixelsize, 71*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("spd", 72*pixelsize, 72*pixelsize, pixelsize) 
     }
 }

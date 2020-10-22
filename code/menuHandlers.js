@@ -84,17 +84,21 @@ function menuHandler(){
         if (partySubMenu == true){
             if(up == true && selectedMenuSlot != 0){
                 selectedMenuSlot -=1
-            }else if(down == true && selectedMenuSlot < 1){
+                up = false
+            }else if(down == true && selectedMenuSlot < 2){
                 selectedMenuSlot += 1
                 down = false
             }else if(keyX == true){
-                if (selectedMenuSlot == 1){
+                if (selectedMenuSlot == 2){
                     partySubMenu = false
                     keyX = false
                 }else if (selectedMenuSlot == 0){
                     movingPokemon = selectedPartySlot
                     partySubMenu = false
                     keyX = false
+                }else if (selectedMenuSlot == 1){
+                    menu = "pkmninfo"
+                    partySubMenu = false
                 } 
             }
         } 
