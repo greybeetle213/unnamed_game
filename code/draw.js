@@ -81,7 +81,7 @@ function draw(){
         print("lvl " + String(party[0][1]), 30*pixelsize-6*pixelsize,50*pixelsize-12*pixelsize, pixelsize)
         ctx.fillStyle = "black"
         ctx.fillRect(23*pixelsize-6*pixelsize,59*pixelsize-12*pixelsize,57*pixelsize,4*pixelsize)
-        var HPTODraw = (party[0][8]/Math.round((((8+2*pokedex[party[0][0]][1][0]+(0/4)+100) * party[0][1])/100)+10))*55
+        var HPTODraw = (party[0][8]/Math.round((2*pokedex[party[0][0]][1][0]*party[0][1])/100+party[0][1]+10))*55
         if(HPTODraw > 28){
             ctx.fillStyle = "green"
         }else if(HPTODraw > 14){
@@ -100,7 +100,7 @@ function draw(){
             print("lvl " + String(party[counter][1]), 95*pixelsize,((3+(counter-1)*24)+13)*pixelsize, pixelsize)
             ctx.fillStyle = "black"
             ctx.fillRect(95*pixelsize,((3+(counter-1)*24)+8)*pixelsize,76*pixelsize,4*pixelsize)
-            var HPTODraw = (party[counter][8]/Math.round((((8+2*pokedex[party[counter][0]][1][0]+(0/4)+100) * party[counter][1])/100)+10))*74
+            var HPTODraw = (party[counter][8]/Math.round((2*pokedex[party[counter][0]][1][0]*party[counter][1])/100+party[counter][1]+10))*74
             if(HPTODraw > 37){
                 ctx.fillStyle = "green"
             }else if(HPTODraw > 19){
@@ -151,17 +151,22 @@ function draw(){
         ctx.fillStyle = "lightgrey"
         ctx.fillRect(70*pixelsize, 11*pixelsize, 20*pixelsize, 9*pixelsize)
         print("hp", 75*pixelsize,12*pixelsize, pixelsize)
-        print(party[selectedPartySlot][8]+"/"+Math.round((((8+2*pokedex[party[selectedPartySlot][0]][1][0]+(0/4)+100) * party[selectedPartySlot][1])/100)+10), canvas.width-40*pixelsize,12*pixelsize, pixelsize)
+        print(party[selectedPartySlot][8]+"/"+Math.round((2*pokedex[party[selectedPartySlot][0]][1][0]*party[selectedPartySlot][1])/100+party[selectedPartySlot][1]+10), canvas.width-40*pixelsize,12*pixelsize, pixelsize)
         ctx.fillRect(70*pixelsize, 23*pixelsize, 20*pixelsize, 9*pixelsize)
         print("atk", 72*pixelsize, 24*pixelsize, pixelsize)
-        print(String(Math.round((((8+2*pokedex[party[selectedPartySlot][0]][1][1]+(0/4)+100) * party[selectedPartySlot][1])/100)+5)), canvas.width-18*pixelsize,24*pixelsize,pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][1]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,24*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 35*pixelsize, 20*pixelsize, 9*pixelsize)
         print("def", 72*pixelsize, 36*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][2]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,36*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 47*pixelsize, 20*pixelsize, 9*pixelsize)
         print("sp.atk", 72*pixelsize, 48*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][3]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,48*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 59*pixelsize, 20*pixelsize, 9*pixelsize)
         print("sp.def", 72*pixelsize, 60*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][6]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,60*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 71*pixelsize, 20*pixelsize, 9*pixelsize)
-        print("spd", 72*pixelsize, 72*pixelsize, pixelsize) 
+        print("spd", 72*pixelsize, 72*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][4]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,72*pixelsize,pixelsize)
+        
     }
 }
