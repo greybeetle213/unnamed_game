@@ -109,8 +109,9 @@ function overWorldHandler(){
         } else {
             pokemon = currentMapPokemon.ultraRareSpawns[Math.floor(Math.random() * currentMapPokemon.ultraRareSpawns.length)]
         }
-        console.log("start a wild encounter battle with a level " + lvl + " " + pokemon)
+        currentBattleInfo = [[pokemon,lvl,0,1,2,3],false]
         encounterPrimed = false
+        menu = "fight"
    }
    if (map.colision[player.y][player.x] == 3 && player.inOverworld == true && player.xMovement == 0 && player.yMovement == 0){
         loadHouse0()

@@ -78,7 +78,7 @@ function draw(){
         }else{
             print(party[0][7].toLowerCase(), 12*pixelsize-6*pixelsize, 65*pixelsize-12*pixelsize, pixelsize)
         }
-        print("lvl " + String(party[0][1]), 30*pixelsize-6*pixelsize,50*pixelsize-12*pixelsize, pixelsize)
+        print("lvl " + String(Math.floor(party[0][1])), 30*pixelsize-6*pixelsize,50*pixelsize-12*pixelsize, pixelsize)
         ctx.fillStyle = "black"
         ctx.fillRect(23*pixelsize-6*pixelsize,59*pixelsize-12*pixelsize,57*pixelsize,4*pixelsize)
         var HPTODraw = (party[0][8]/Math.round((2*pokedex[party[0][0]][1][0]*party[0][1])/100+party[0][1]+10))*55
@@ -97,7 +97,7 @@ function draw(){
             }else{
                 print(party[counter][7].toLowerCase(), 95*pixelsize, (3+(counter-1)*24)*pixelsize, pixelsize)
             }
-            print("lvl " + String(party[counter][1]), 95*pixelsize,((3+(counter-1)*24)+13)*pixelsize, pixelsize)
+            print("lvl " + String(Math.floor(party[counter][1])), 95*pixelsize,((3+(counter-1)*24)+13)*pixelsize, pixelsize)
             ctx.fillStyle = "black"
             ctx.fillRect(95*pixelsize,((3+(counter-1)*24)+8)*pixelsize,76*pixelsize,4*pixelsize)
             var HPTODraw = (party[counter][8]/Math.round((2*pokedex[party[counter][0]][1][0]*party[counter][1])/100+party[counter][1]+10))*74
@@ -167,6 +167,14 @@ function draw(){
         ctx.fillRect(70*pixelsize, 71*pixelsize, 20*pixelsize, 9*pixelsize)
         print("spd", 72*pixelsize, 72*pixelsize, pixelsize)
         print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][4]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,72*pixelsize,pixelsize)
+        print("lvl "+Math.floor(party[selectedPartySlot][1]), pixelsize*1,85*pixelsize,pixelsize)
+        ctx.fillStyle = "black"
+        ctx.fillRect(pixelsize*40,85*pixelsize, 70*pixelsize, 7*pixelsize)
+        ctx.fillStyle = "lightblue"
+        ctx.fillRect(pixelsize*41,86*pixelsize, ((party[selectedPartySlot][1] - Math.floor(party[selectedPartySlot][1]))*68)*pixelsize, 5*pixelsize)
+
         
+    }else if(menu === "fight"){
+        BattleEngineGraphics()
     }
 }
