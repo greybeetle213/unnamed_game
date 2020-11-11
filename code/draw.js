@@ -1,17 +1,19 @@
 function draw(){
     ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height)
-    ctx.drawImage(room1, player.camerax+map.startingPos[0],player.cameray+map.startingPos[1], map.width, map.height)
-    ctx.drawImage(player.image[player.Direction][player.AnimationProgress], player.playerx, player.playery, pixelsize * 16, pixelsize * 16)
-    npcstodraw = map.npcs.length - 1
-    while(npcstodraw >= 0){
-        ctx.drawImage(map.npcs[npcstodraw][3][0],map.npcs[npcstodraw][1]+player.camerax,map.npcs[npcstodraw][2]+player.cameray,16*pixelsize,16*pixelsize)
-        npcstodraw -= 1
-    }
-    if(textshowing == true){
-        ctx.drawImage(textbox, 3*pixelsize,98*pixelsize,170*pixelsize,40*pixelsize)
-        letterx = 0
-        print(onScreenText[0], 5*pixelsize, 100*pixelsize, pixelsize*2)
-        print(onScreenText[1], 5*pixelsize, 120*pixelsize, pixelsize*2)
+    if (menu == "none" || menu == "main"){
+        ctx.drawImage(room1, player.camerax+map.startingPos[0],player.cameray+map.startingPos[1], map.width, map.height)
+        ctx.drawImage(player.image[player.Direction][player.AnimationProgress], player.playerx, player.playery, pixelsize * 16, pixelsize * 16)
+        npcstodraw = map.npcs.length - 1
+        while(npcstodraw >= 0){
+            ctx.drawImage(map.npcs[npcstodraw][3][0],map.npcs[npcstodraw][1]+player.camerax,map.npcs[npcstodraw][2]+player.cameray,16*pixelsize,16*pixelsize)
+            npcstodraw -= 1
+        }
+        if(textshowing == true){
+            ctx.drawImage(textbox, 3*pixelsize,98*pixelsize,170*pixelsize,40*pixelsize)
+            letterx = 0
+            print(onScreenText[0], 5*pixelsize, 100*pixelsize, pixelsize*2)
+            print(onScreenText[1], 5*pixelsize, 120*pixelsize, pixelsize*2)
+        }
     }
     if (menu == "main"){
         ctx.beginPath()

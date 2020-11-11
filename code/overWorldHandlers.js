@@ -109,7 +109,18 @@ function overWorldHandler(){
         } else {
             pokemon = currentMapPokemon.ultraRareSpawns[Math.floor(Math.random() * currentMapPokemon.ultraRareSpawns.length)]
         }
-        currentBattleInfo = [[pokemon,lvl,0,1,2,3],false]
+        currentBattleInfo = [[pokemon,lvl,0,1,2,3,Math.round((2*pokedex[pokemon][1][0]*lvl)/100+lvl+10)],false]
+        for (counter = 0; counter < party.length; counter ++){
+            if(party[counter][8] > 0){
+                currentBattleInfo.push(party[counter])
+                currentBattleInfo[2].push(counter)
+                break
+            }
+        } 
+        playersBattlePokemonSprite.src = "pokemon/back_"+pokedex[currentBattleInfo[2][0]][0]+".png"
+        opponentsBattlePokemonSprite.src = "pokemon/front_" + pokedex[currentBattleInfo[0][0]][0]+".png"
+        battlePlatform = new Image()
+        battlePlatform.src = "other_images/battle-platform.png"
         encounterPrimed = false
         menu = "fight"
    }
