@@ -117,6 +117,8 @@ function overWorldHandler(){
                 break
             }
         } 
+        currentBattleInfo.push(1) //stage in turn 1 = choseing act 1.1 = fighting 1.2 = item 1.3 = switching pokemon 2 = playing move animatoins
+        currentBattleInfo.push(["a wild "+pokedex[pokemon][0],"appeared"]) // the message displayed at the bottom of the screen while in battle [line1,line2]
         playersBattlePokemonSprite.src = "pokemon/back_"+pokedex[currentBattleInfo[2][0]][0]+".png"
         opponentsBattlePokemonSprite.src = "pokemon/front_" + pokedex[currentBattleInfo[0][0]][0]+".png"
         battlePlatform = new Image()

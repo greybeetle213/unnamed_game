@@ -62,7 +62,7 @@ function init() {
     startingPos = [0,0]
     miscImage = new Image
     bag = new Image
-    currentBattleInfo = [] // opponents team, whether its a trainer battle, [name of first healthy pokemon in party,ect,index in party]
+    currentBattleInfo = [] // opponents team, whether its a trainer battle, [name of first healthy pokemon in party,ect,index in party], battleSubMenu
     itemDex = [["pokeball", "item", ["a device for capturing pokemon", ""]], ["greatball", "item", ["a better device for capturing", "pokemon"]], ["pokedex", "KeyItem", ["lets you keep track of captured", "pokemon"]], ["hm 01", "Tm Hm", ["cuts down small trees", "if taught to a pokemon"]] ]
     pokedex = [['bulbasaur',[45,49,49,65,45,0,65], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['charmander',[39,52,43,60,65, 1,50],[]],['Charmelion'],['Charizard'],['caterpie',[10, 5,5,5,5,1],[]]] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape sp.def], [move, level.learned]]
     pokemonShapes = [new Image, new Image, new Image, new Image,new Image, new Image, new Image, new Image,new Image, new Image]
