@@ -38,7 +38,7 @@ function menuHandler(){
         }
         if (right == true && 2 > bagPockets[3]){
             bagPockets[3] += 1
-            selectedItem = 0
+            selectedItem = 
             right = false
         }
         if (up == true && selectedItem != 0){
@@ -103,4 +103,7 @@ function menuHandler(){
             }
         } 
     }
+	if(menu == "fight"){
+		BattleEngine()
+	}
 }

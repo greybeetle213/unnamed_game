@@ -36,7 +36,8 @@ function init() {
     playerImage[3][0].src = "pokemon_guy/sprite_09.png"
     playerImage[3][1].src = "pokemon_guy/sprite_10.png"
     playerImage[3][2].src = "pokemon_guy/sprite_11.png"
-    menuSelecter = new Image
+    selectedMenuSlot = 0
+	menuSelecter = new Image
     menuSelecter.src = "text/menu selector.png"
     overworldMap = {}
     overworldPos = {}
@@ -62,9 +63,10 @@ function init() {
     startingPos = [0,0]
     miscImage = new Image
     bag = new Image
-    currentBattleInfo = [] // opponents team, whether its a trainer battle, [name of first healthy pokemon in party,ect,index in party], battleSubMenu
+    currentBattleInfo = [] // opponents team, whether its a trainer battle, [name of first healthy pokemon in party,ect,index in party], stage in turn 1 = choseing act 1.1 = fighting 1.2 = item 1.3 = switching pokemon 2 = playing move animatoins, the message displayed at the bottom of the screen while in battle [line1,line2]
     itemDex = [["pokeball", "item", ["a device for capturing pokemon", ""]], ["greatball", "item", ["a better device for capturing", "pokemon"]], ["pokedex", "KeyItem", ["lets you keep track of captured", "pokemon"]], ["hm 01", "Tm Hm", ["cuts down small trees", "if taught to a pokemon"]] ]
     pokedex = [['bulbasaur',[45,49,49,65,45,0,65], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['charmander',[39,52,43,60,65, 1,50],[]],['Charmelion'],['Charizard'],['caterpie',[10, 5,5,5,5,1],[]]] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape sp.def], [move, level.learned]]
+    moveDex = [["scratch", 40, 35, 100, "phy", "none", "normal"], ["growl", 0, 40, 100, "phy","foe atk -1", "normal"], ["ember", 0, 40, 100, "spe","foe def -1", "normal"], ["sand attack", 0, 15, 100, "spe", "foe acu -1", "ground"]] // name, power, power points, acuracy (percent), specail/physical, effects (eg. poison, attack drop ect.), type
     pokemonShapes = [new Image, new Image, new Image, new Image,new Image, new Image, new Image, new Image,new Image, new Image]
     for (counter = 0; counter != 10; counter ++){
         if (counter != 10){ 
