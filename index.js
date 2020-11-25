@@ -67,7 +67,7 @@ function init() {
     battleAnimationProgress = 0
     itemDex = [["pokeball", "item", ["a device for capturing pokemon", ""]], ["greatball", "item", ["a better device for capturing", "pokemon"]], ["pokedex", "KeyItem", ["lets you keep track of captured", "pokemon"]], ["hm 01", "Tm Hm", ["cuts down small trees", "if taught to a pokemon"]] ]
     pokedex = [['bulbasaur',[45,49,49,65,45,0,65,"grass"], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['charmander',[39,52,43,60,65, 1,50,"fire"],[]],['Charmelion'],['Charizard'],['caterpie',[10, 5,5,5,5,1],[]]] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape sp.def], [move, level.learned]]
-    moveDex = [["scratch", 40, 35, 100, "phy", "none", "normal"], ["growl", 0, 40, 100, "phy","foe atk -1", "normal"], ["ember", 0, 40, 100, "spe","foe def -1", "normal"], ["sand attack", 0, 15, 100, "spe", "foe acu -1", "ground"]] // name, power, power points, acuracy (percent), specail/physical, effects (eg. poison, attack drop ect.), type
+    moveDex = [["scratch", 40, 35, 100, "phy", "none", "normal"], ["growl", 0, 40, 100, "phy","foe atk -1", "normal"], ["ember", 40, 40, 100, "spe","bur", "fire"], ["sand attack", 0, 15, 100, "spe", "foe acu -1", "ground"]] // name, power, power points, acuracy (percent), specail/physical, effects (eg. poison, attack drop ect.), type
     pokemonShapes = [new Image, new Image, new Image, new Image,new Image, new Image, new Image, new Image,new Image, new Image]
     for (counter = 0; counter != 10; counter ++){
         if (counter != 10){ 
@@ -82,7 +82,7 @@ function init() {
     bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
     scrolledInBag = 0 //how far down you are scrolled in the item viewer
     selectedItem = 0
-    party = [[0,70.58,0,1,3,2,'','', 143],[3,100,0,1,3,2,'','', 140],[0,2,0,1,3,2,'','fredrick', 7],[3,100,0,1,3,2,'','mandy', 188]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
+    party = [[0,70.58,0,1,3,2,'','', 143],[3,100,0,1,3,2,'','', 140],[0,2,0,1,3,2,'','fredrick', 14],[3,100,0,1,3,2,'','mandy', 188]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
     selectedPartySlot = 0
     partySubMenu = false
     movingPokemon = -1

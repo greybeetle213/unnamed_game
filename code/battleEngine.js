@@ -139,7 +139,12 @@ function BattleEngine(){
             }
         }else if(currentBattleInfo[3] == 1.1){
             currentBattleInfo[3] = 2
-            currentBattleInfo[0][7] -= (((((2*currentBattleInfo[2][1]/5)+2)*moveDex[currentBattleInfo[2][3+selectedMenuSlot]][1]*Math.round(((2*pokedex[party[selectedPartySlot][0]][1][1]+8)*party[selectedPartySlot][1])/100+5)/Math.round(((2*pokedex[party[selectedPartySlot][0]][1][2]+8)*party[selectedPartySlot][1])/100+5))/50)+2)
+            var lvl = currentBattleInfo[2][1]
+            var power = moveDex[currentBattleInfo[2][2+selectedMenuSlot]][1]
+            var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][1]+8)*currentBattleInfo[2][1])/100+5)
+            var def = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][2]+8)*currentBattleInfo[2][1])/100+5)
+            currentBattleInfo[0][6] -= (((2*lvl/5)+2)*power*atk/def)/50
+            console.log([lvl,power,atk,def])
             currentBattleInfo[3] = 1
         }
         keyX = false
