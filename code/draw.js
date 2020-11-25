@@ -176,7 +176,11 @@ function draw(){
         ctx.fillRect(pixelsize*41,86*pixelsize, ((party[selectedPartySlot][1] - Math.floor(party[selectedPartySlot][1]))*68)*pixelsize, 5*pixelsize)
 
         
-    }else if(menu === "fight"){
+    }else if(menu == "fight"){
         BattleEngineGraphics()
+    }
+    if(battleAnimationProgress > 0){
+        ctx.fillStyle = "black"
+        ctx.fillRect(0,canvas.height-battleAnimationProgress*pixelsize,canvas.width,canvas.height)
     }
 }

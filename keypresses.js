@@ -4,15 +4,16 @@ var down = false
 var up = false
 var enter = false
 var keyX = false
+var keyZ = false
 
 function touchMode(){
     var counter = 0
     if (document.getElementById("touch0").style.visibility == "hidden"){
-        for (counter = 0; counter < 6; counter ++){
+        for (counter = 0; counter < 7; counter ++){
             document.getElementById("touch"+counter).style.visibility = "visible"
         }
     }else{
-        for (counter = 0; counter < 6; counter ++){
+        for (counter = 0; counter < 7; counter ++){
             document.getElementById("touch"+counter).style.visibility = "hidden"
         }
     }
@@ -29,6 +30,13 @@ function touchA(event){
         keyX = true
     }else{
         keyX = false
+    }
+}
+function touchB(event){
+    if (event == 'down'){
+        keyZ = true
+    }else{
+        keyZ = false
     }
 }
 function touchUp(event){
@@ -118,6 +126,16 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
     if (event.key == 'Enter') {
         enter = false
+    }
+})
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'z') {
+        keyZ = true
+    }
+})
+document.addEventListener('keyup', (event) => {
+    if (event.key == 'z') {
+        keyZ = false
     }
 })
 

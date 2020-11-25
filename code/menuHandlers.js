@@ -1,5 +1,5 @@
 function menuHandler(){
-    if (enter == true && player.xMovement == 0 && player.yMovement == 0 && textshowing == false){
+    if (enter == true && player.xMovement == 0 && player.yMovement == 0 && textshowing == false && menu != "fight"){
         if (menu == "none"){ 
             selectedMenuSlot = 0
             menu = "main" // set the menu to be the one with that lets you chose between pokemon, bag, profile, pokedex, ect.
