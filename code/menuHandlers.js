@@ -78,13 +78,19 @@ function menuHandler(){
         }
         if(keyX == true && menu == "fight" && party[selectedPartySlot][8] != 0){
             console.log("yes")
-            currentBattleInfo[2] = party[selectedPartySlot]
-            currentBattleInfo[3] = 2.3
-            playersBattlePokemonSprite.src = "pokemon/back_"+pokedex[currentBattleInfo[2][0]][0]+".png"
-            if(currentBattleInfo[2][7] == ""){
-                currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + "@ kill", ""]
+            if (currentBattleInfo[2][8] > 0){
+                currentBattleInfo[2] = party[selectedPartySlot]
+                currentBattleInfo[3] = 2.3
+                playersBattlePokemonSprite.src = "pokemon/back_"+pokedex[currentBattleInfo[2][0]][0]+".png"
+                if(currentBattleInfo[2][7] == ""){
+                    currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + "@ kill", ""]
+                }else{
+                    currentBattleInfo[4] = [currentBattleInfo[2][7]+ "@ kill", ""]
+                }
             }else{
-                currentBattleInfo[4] = [currentBattleInfo[2][7]+ "@ kill", ""]
+                currentBattleInfo[2] = party[selectedPartySlot]
+                currentBattleInfo[3] = 1
+                playersBattlePokemonSprite.src = "pokemon/back_"+pokedex[currentBattleInfo[2][0]][0]+".png"
             }
             keyX = false
         }
