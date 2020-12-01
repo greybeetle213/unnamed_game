@@ -55,7 +55,7 @@ function menuHandler(){
             scrolledInBag += 1
             down = false
         }
-    }else if(menu == "pkmn"){
+    }else if(menu == "pkmn" || (menu == "fight" && currentBattleInfo[3] == 1.2)){
         if (partySubMenu == false){
             if (down == true && selectedPartySlot < party.length-1){
                 selectedPartySlot += 1
@@ -72,8 +72,20 @@ function menuHandler(){
                 selectedPartySlot = 1
             }
         }
-        if (keyX == true && partySubMenu == false && movingPokemon == -1){
+        if (keyX == true && partySubMenu == false && movingPokemon == -1 && menu != "fight"){
             partySubMenu = true
+            keyX = false
+        }
+        if(keyX == true && menu == "fight" && party[selectedPartySlot][8] != 0){
+            console.log("yes")
+            currentBattleInfo[2] = party[selectedPartySlot]
+            currentBattleInfo[3] = 2.3
+            playersBattlePokemonSprite.src = "pokemon/back_"+pokedex[currentBattleInfo[2][0]][0]+".png"
+            if(currentBattleInfo[2][7] == ""){
+                currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + "@ kill", ""]
+            }else{
+                currentBattleInfo[4] = [currentBattleInfo[2][7]+ "@ kill", ""]
+            }
             keyX = false
         }
         if (keyX == true && movingPokemon != -1){

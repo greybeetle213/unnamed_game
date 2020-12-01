@@ -57,7 +57,7 @@ function draw(){
             print(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][2][0], 5*pixelsize, 103*pixelsize, pixelsize)
             print(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][2][1], 5*pixelsize, 113*pixelsize, pixelsize)
         }
-    }else if(menu == "pkmn"){
+    }else if(menu == "pkmn" || menu == "fight" && currentBattleInfo[3] == 1.2){
         ctx.fillStyle = "darkblue"
         ctx.fillRect(0,0, canvas.width, canvas.height)
         ctx.fillStyle = "orange"
@@ -153,23 +153,23 @@ function draw(){
         ctx.fillStyle = "lightgrey"
         ctx.fillRect(70*pixelsize, 11*pixelsize, 20*pixelsize, 9*pixelsize)
         print("hp", 75*pixelsize,12*pixelsize, pixelsize)
-        print(party[selectedPartySlot][8]+"/"+Math.round((2*pokedex[party[selectedPartySlot][0]][1][0]*party[selectedPartySlot][1])/100+party[selectedPartySlot][1]+10), canvas.width-40*pixelsize,12*pixelsize, pixelsize)
+        print(Math.ceil(party[selectedPartySlot][8])+"/"+Math.round((2*pokedex[party[selectedPartySlot][0]][1][0]*Math.floor(party[selectedPartySlot][1]))/100+Math.floor(party[selectedPartySlot][1])+10), canvas.width-40*pixelsize,12*pixelsize, pixelsize)
         ctx.fillRect(70*pixelsize, 23*pixelsize, 20*pixelsize, 9*pixelsize)
         print("atk", 72*pixelsize, 24*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][1]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,24*pixelsize,pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][1]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,24*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 35*pixelsize, 20*pixelsize, 9*pixelsize)
         print("def", 72*pixelsize, 36*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][2]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,36*pixelsize,pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][2]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,36*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 47*pixelsize, 36*pixelsize, 9*pixelsize)
         print("sp.atk", 72*pixelsize, 48*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][3]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,48*pixelsize,pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][3]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,48*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 59*pixelsize, 36*pixelsize, 9*pixelsize)
         print("sp.def", 72*pixelsize, 60*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][6]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,60*pixelsize,pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][6]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,60*pixelsize,pixelsize)
         ctx.fillRect(70*pixelsize, 71*pixelsize, 20*pixelsize, 9*pixelsize)
         print("spd", 72*pixelsize, 72*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][4]+8)*party[selectedPartySlot][1])/100+5)), canvas.width-18*pixelsize,72*pixelsize,pixelsize)
-        print("lvl "+Math.floor(party[selectedPartySlot][1]), pixelsize*1,85*pixelsize,pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][4]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,72*pixelsize,pixelsize)
+        print("lvl "+Math.floor(Math.floor(party[selectedPartySlot][1])), pixelsize*1,85*pixelsize,pixelsize)
         ctx.fillStyle = "black"
         ctx.fillRect(pixelsize*40,85*pixelsize, 70*pixelsize, 7*pixelsize)
         ctx.fillStyle = "lightblue"

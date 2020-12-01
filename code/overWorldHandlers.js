@@ -114,7 +114,7 @@ function overWorldHandler(){
         } else {
             pokemon = currentMapPokemon.ultraRareSpawns[Math.floor(Math.random() * currentMapPokemon.ultraRareSpawns.length)]
         }
-        currentBattleInfo = [[pokemon,lvl,0,1,2,3,Math.round((2*pokedex[pokemon][1][0]*lvl)/100+lvl+10)],false]
+        currentBattleInfo = [[pokemon,lvl,1,2,0,0,Math.round((2*pokedex[pokemon][1][0]*lvl)/100+lvl+10)],1]
         for (counter = 0; counter < party.length; counter ++){
             if(party[counter][8] > 0){
                 currentBattleInfo.push(party[counter])
@@ -122,8 +122,9 @@ function overWorldHandler(){
                 break
             }
         } 
-        currentBattleInfo.push(1) //stage in turn: 0 = showing text, 1 = choseing act, 1.1 = fighting, 1.2 = item, 1.3 = switching pokemon, 2 = playing move animatoins
+        currentBattleInfo.push(1) //stage in turn: 0 = showing text, 1 = choseing act, 1.1 = fighting, 1.2 = item, 1.3 = switching pokemon, 2.1 = playing fastest pokemons move animatoin, 2.2 = playing last pokemons move animation, 2.3 = player changed pokemon, 2.4 = player used item, 2.5 = oponent uses move 
         currentBattleInfo.push(["a wild "+pokedex[pokemon][0],"appeared"]) // the message displayed at the bottom of the screen while in battle [line1,line2]
+        currentBattleInfo.push([[0, 0.2],0,"own"]) // [positoin of physacal attack, how much to add/subtract], pos of special attack, whether damage frames are active or not, pokemon using move
         playersBattlePokemonSprite.src = "pokemon/back_"+pokedex[currentBattleInfo[2][0]][0]+".png"
         opponentsBattlePokemonSprite.src = "pokemon/front_" + pokedex[currentBattleInfo[0][0]][0]+".png"
         battlePlatform = new Image()
