@@ -7,6 +7,9 @@ function print(writing,x,y,scale){
         letterx += 5*scale + 0.5*scale
     }
 }
+function Heal(pokemon){
+    party[pokemon][8] = Math.round((2*pokedex[party[pokemon][0]][1][0]*Math.floor(party[pokemon][1]))/100+Math.floor(party[pokemon][1])+10)
+}
 function loadNPCS(){
     var npcsToLoad = map.npcs.length - 1
     var imagesToLoad = 4
@@ -24,7 +27,7 @@ function loadHouse0(){
     Object.assign(overworldPos, player) // where in the overworld the player was when they enterd the room
     Object.assign(overworldMap, map)
     player.inOverworld = false
-    map.colision = MapColision.house0
+    map.colision = MapColision.house0 
     map.width = 128 * pixelsize
     map.height = 128 * pixelsize
     map.startingPos = [16 * pixelsize,16 * pixelsize]
@@ -44,8 +47,14 @@ function loadHouse0(){
     loadNPCS()
 }
 function loadRoom0(){
-    Object.assign(map, overworldMap)
-    Object.assign(player, overworldPos) // where in the overworld the player was when they entered the room
+    if(returningToCheckPoint == false){
+        Object.assign(map, overworldMap)
+        Object.assign(player, overworldPos) // where in the overworld the player was when they entered the room
+    }else{
+        Object.assign(map, lastCheckPoint[1])
+        Object.assign(player, lastCheckPoint[2])
+        returningToCheckPoint = false
+    }
     player.inOverworld = true
     player.y += 1
     player.yMovement = 16

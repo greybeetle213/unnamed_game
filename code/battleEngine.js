@@ -259,7 +259,29 @@ function BattleEngine(){
         }
         if(currentBattleInfo[2][8] <= 0){
             keyX = false
-            currentBattleInfo[3] = 1.2
+            console.log("a")
+            var pokemonChecked 
+            for(pokemonChecked = 0; pokemonChecked < party.length; pokemonChecked ++){
+                if(party[pokemonChecked][8] > 0){
+                    break
+                }
+            }
+            if(pokemonChecked != party.length){
+                currentBattleInfo[3] = 1.2
+                console.log("b")
+            }else{
+                console.log("")
+                menu = "none"
+                for(pokemonChecked = 0; pokemonChecked < party.length; pokemonChecked ++){
+                    Heal(pokemonChecked)
+                }
+                returningToCheckPoint = true
+                setTimeout(
+                    function(){
+                        lastCheckPoint[0]()
+                    }
+                ,3000)
+            }
         }
         if(currentBattleInfo[3] != 1.2){
             keyX = false

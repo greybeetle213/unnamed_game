@@ -76,7 +76,7 @@ function menuHandler(){
             partySubMenu = true
             keyX = false
         }
-        if(keyX == true && menu == "fight" && party[selectedPartySlot][8] != 0){
+        if(keyX == true && menu == "fight" && party[selectedPartySlot][8] != 0){  
             console.log("yes")
             if (currentBattleInfo[2][8] > 0){
                 currentBattleInfo[2] = party[selectedPartySlot]

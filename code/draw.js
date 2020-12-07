@@ -183,4 +183,11 @@ function draw(){
         ctx.fillStyle = "black"
         ctx.fillRect(0,canvas.height-battleAnimationProgress*pixelsize,canvas.width,canvas.height)
     }
+    if(returningToCheckPoint == true){
+        console.log("yes")
+        ctx.fillStyle = "white"
+        ctx.fillRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height)
+        print("/player/ ran to", 25*pixelsize, 50*pixelsize, pixelsize)
+        print("heal their pokemon", 25*pixelsize, 58*pixelsize, pixelsize)
+    }
 }
