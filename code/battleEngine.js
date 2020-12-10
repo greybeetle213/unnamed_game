@@ -11,7 +11,7 @@ function BattleEngineGraphics(){
     ctx.fillStyle = "#DDAA11"
     ctx.fillRect(6*pixelsize,6*pixelsize, 57*pixelsize,22*pixelsize) // fill info box for opposing pokemon
     ctx.fillRect(canvas.width-63*pixelsize,canvas.height-64*pixelsize, 57*pixelsize,22*pixelsize) // fill info box for own pokemon
-    if(currentBattleInfo[2][7] == ""){ // if the pokemon has a nickname print it; else print the pokemons specis
+    if(currentBattleInfo[2][7] == ""){ // if the pokemon has a nickname print it; else print the pokemons species
         print(pokedex[currentBattleInfo[2][0]][0], canvas.width-62*pixelsize, canvas.height-63*pixelsize, pixelsize)
     }else{
         print(currentBattleInfo[2][7], canvas.width-62*pixelsize, canvas.height-63*pixelsize, pixelsize)
@@ -148,20 +148,55 @@ function BattleEngine(){
             }
         }else if(currentBattleInfo[3] == 1.1 && currentBattleInfo[2][2+selectedMenuSlot] != 0){
             currentBattleInfo[3] = 2.1
+            var useableMoves = [] // moves the enemy pokemon can use 
+            if(currentBattleInfo[0][2] != 0){
+                useableMoves.push(currentBattleInfo[0][2])
+            }
+            if(currentBattleInfo[0][3] != 0){
+                useableMoves.push(currentBattleInfo[0][3])
+            }
+            if(currentBattleInfo[0][4] != 0){
+                useableMoves.push(currentBattleInfo[0][4])
+            }
+            if(currentBattleInfo[0][5] != 0){
+                useableMoves.push(currentBattleInfo[0][5])
+            }
+            enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
+            //console.log(enemysMove)
             if(Math.round(((2*pokedex[currentBattleInfo[2][0]][1][4]+8)*currentBattleInfo[2][1])/100+5) >= Math.round(((2*pokedex[currentBattleInfo[0][0]][1][4]+8)*currentBattleInfo[0][1])/100+5)){
                 currentBattleInfo[5] = [[0,0.2],0,"own"]
+                if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
+                    moveType = "phy"
+                }else{
+                    moveType = "spe"
+                }
             }else{
                 currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                if(moveDex[currentBattleInfo[0][2+selectedMenuSlot]][4] == "phy"){
+                    moveType = "phy"
+                }else{
+                    moveType = "spe"
+                }
             }
         }
         if(currentBattleInfo[3] == 2.1 && currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2){
             if(currentBattleInfo[0][6] != 0){
                 currentBattleInfo[5][0] = [0.0, 0.2]
                 currentBattleInfo[3] = 2.2
-                if(currentBattleInfo[5][2] == "own"){
-                    currentBattleInfo[5][2] = "foe"
+                if(currentBattleInfo[5][2] == "foe"){
+                    currentBattleInfo[5] = [[0,0.2],0,"own"]
+                    if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
+                        moveType = "phy"
+                    }else{
+                        moveType = "spe"
+                    }
                 }else{
-                    currentBattleInfo[5][2] = "own"
+                    currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                    if(moveDex[currentBattleInfo[0][2+selectedMenuSlot]][4] == "phy"){
+                        moveType = "phy"
+                    }else{
+                        moveType = "spe"
+                    }
                 }
             }else{
                 currentBattleInfo[3] = 0
@@ -288,7 +323,8 @@ function BattleEngine(){
         }
     }
     if(currentBattleInfo[3] == 2.1 || currentBattleInfo[3] == 2.2 || currentBattleInfo[3] == 2.5){
-        if(currentBattleInfo[5][2] == "own" && currentBattleInfo[5][0][0] >= 4){
+        if(currentBattleInfo[5][2] == "own" && ((currentBattleInfo[5][0][0] >= 4 && moveType == "phy") || (currentBattleInfo[5][0][0] >= 50 && moveType == "spe"))){
+            console.log("yes")
             if(currentBattleInfo[2][7] == ""){
                 currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0]+" used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0]]
             }else{
@@ -304,23 +340,8 @@ function BattleEngine(){
             }
             console.log([lvl,power,atk,def])
             selectedMenuSlot = 0
-        }else if(currentBattleInfo[5][0][0] >= 4){
+        }else if((currentBattleInfo[5][0][0] >= 4 && moveType == "phy") || (currentBattleInfo[5][0][0] >= 50 && moveType == "spe")){
             currentBattleInfo[5][2] = "foe"
-            var useableMoves = []
-            if(currentBattleInfo[0][2] != 0){
-                useableMoves.push(currentBattleInfo[0][2])
-            }
-            if(currentBattleInfo[0][3] != 0){
-                useableMoves.push(currentBattleInfo[0][3])
-            }
-            if(currentBattleInfo[0][4] != 0){
-                useableMoves.push(currentBattleInfo[0][4])
-            }
-            if(currentBattleInfo[0][5] != 0){
-                useableMoves.push(currentBattleInfo[0][5])
-            }
-            enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
-            console.log(enemysMove)
             currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0]+" used ", moveDex[enemysMove][0]]
             var lvl = currentBattleInfo[2][1]
             var power = moveDex[enemysMove][1]
@@ -332,13 +353,21 @@ function BattleEngine(){
             }
             console.log([lvl,power,atk,def])
         }
-        if(currentBattleInfo[5][0] != [0,-0.2] && ((moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy" && currentBattleInfo[5][2] == "own")) || (currentBattleInfo[5][2] == "foe") && !(currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
+        if(currentBattleInfo[5][0] != [0,-0.2] && moveType == "phy" && !(currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
             currentBattleInfo[5][0][0] += currentBattleInfo[5][0][1]
             if(currentBattleInfo[5][0][0] >= 4){
                 currentBattleInfo[5][0][1] = -0.2
             }
             if(currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2){
                 currentBattleInfo[5][0][0] = 0.0
+            }
+        }
+        if(currentBattleInfo[5][0] != [0,-0.2] && moveType == "spe" && !(currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
+            console.log(currentBattleInfo[5][0][0])
+            currentBattleInfo[5][0][0] += 1
+            if(currentBattleInfo[5][0][0] == 51){
+                currentBattleInfo[5][0][0] = 0
+                currentBattleInfo[5][0][1] = -0.2
             }
         }
     }
