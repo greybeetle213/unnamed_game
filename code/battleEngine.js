@@ -274,6 +274,29 @@ function BattleEngine(){
         if (currentBattleInfo[3] == 2.3){
             currentBattleInfo[3] = 2.5
             currentBattleInfo[5][0] = [0.0, 0.2]
+            var useableMoves = [] // moves the enemy pokemon can use 
+            if(currentBattleInfo[0][2] != 0){
+                useableMoves.push(currentBattleInfo[0][2])
+            }
+            if(currentBattleInfo[0][3] != 0){
+                useableMoves.push(currentBattleInfo[0][3])
+            }
+            if(currentBattleInfo[0][4] != 0){
+                useableMoves.push(currentBattleInfo[0][4])
+            }
+            if(currentBattleInfo[0][5] != 0){
+                useableMoves.push(currentBattleInfo[0][5])
+            }
+            enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
+            //console.log(enemysMove)
+            currentBattleInfo[5] = [[0,0.2],0,"foe"]
+            if(moveDex[enemysMove][4] == "phy"){
+                moveType = "phy"
+            }else{
+                moveType = "spe"
+            }
+            console.log(moveType)
+            
             currentBattleInfo[5][2] = "foe"
         }else if(currentBattleInfo[3] == 2.5){
             if(currentBattleInfo[0][6] != 0){
