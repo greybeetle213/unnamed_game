@@ -20,12 +20,31 @@ function BattleEngineGraphics(){
     print("lvl "+currentBattleInfo[0][1], 7*pixelsize, 20*pixelsize, pixelsize)
     print("lvl "+Math.floor(currentBattleInfo[2][1]), canvas.width-62*pixelsize,canvas.height-50*pixelsize, pixelsize)
     ctx.drawImage(battlePlatform, 85*pixelsize, 33*pixelsize, battlePlatform.width*pixelsize, battlePlatform.height*pixelsize)
-    if(currentBattleInfo[5][2] == "own"){
-        ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2)+Math.floor(currentBattleInfo[5][0][0])*pixelsize,canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
-        ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+    if(moveType == "phy" || currentBattleInfo[3] < 2){
+        if(currentBattleInfo[5][2] == "own"){
+            ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2)+Math.floor(currentBattleInfo[5][0][0])*pixelsize,canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
+            ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+        }else{
+            ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
+            ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize-Math.floor(currentBattleInfo[5][0][0])*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+        }
     }else{
-        ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
-        ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize-Math.floor(currentBattleInfo[5][0][0])*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+        if(currentBattleInfo[5][0][0] != 0){
+            if(currentBattleInfo[5][2] == "own"){
+                ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
+                ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+                miscImage.src = "other_images/sp-atk.png"
+                ctx.drawImage(miscImage, 60*pixelsize+currentBattleInfo[5][0][0]*pixelsize, canvas.height-70*pixelsize-currentBattleInfo[5][0][0]*pixelsize, miscImage.width*pixelsize, miscImage.height*pixelsize)
+            }else{
+                ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+                miscImage.src = "other_images/sp-atk.png"
+                ctx.drawImage(miscImage, 100*pixelsize-currentBattleInfo[5][0][0]*pixelsize, 30*pixelsize+currentBattleInfo[5][0][0]*pixelsize, miscImage.width*pixelsize, miscImage.height*pixelsize)
+                ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
+            }
+        }else{
+            ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
+            ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+        }
     }
     ctx.fillStyle = "black"
     ctx.fillRect(canvas.width-62*pixelsize,canvas.height-55*pixelsize,55*pixelsize,4*pixelsize)
@@ -332,8 +351,13 @@ function BattleEngine(){
             }
             var lvl = Math.floor(currentBattleInfo[2][1])
             var power = moveDex[currentBattleInfo[2][2+selectedMenuSlot]][1]
-            var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][1]+8)*lvl)/100+5)
-            var def = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][2]+8)*lvl)/100+5)
+            if(moveType == "phy"){
+                var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][1]+8)*lvl)/100+5)
+                var def = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][2]+8)*lvl)/100+5)
+            }else{
+                var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][3]+8)*lvl)/100+5)
+                var def = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][6]+8)*lvl)/100+5)
+            }
             currentBattleInfo[0][6] -= (((2*lvl/5)+2)*power*atk/def)/50
             if(currentBattleInfo[0][6] < 0){
                 currentBattleInfo[0][6] = 0
@@ -345,8 +369,13 @@ function BattleEngine(){
             currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0]+" used ", moveDex[enemysMove][0]]
             var lvl = currentBattleInfo[2][1]
             var power = moveDex[enemysMove][1]
-            var atk = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][1]+8)*currentBattleInfo[0][1])/100+5)
-            var def = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][2]+8)*currentBattleInfo[2][1])/100+5)
+            if(moveType == "phy"){
+                var atk = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][1]+8)*currentBattleInfo[0][1])/100+5)
+                var def = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][2]+8)*currentBattleInfo[2][1])/100+5)
+            }else{
+                var atk = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][3]+8)*currentBattleInfo[0][1])/100+5)
+                var def = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][6]+8)*currentBattleInfo[2][1])/100+5)
+            }
             currentBattleInfo[2][8] -= (((2*lvl/5)+2)*power*atk/def)/50
             if(currentBattleInfo[2][8] < 0){
                 currentBattleInfo[2][8] = 0
@@ -363,9 +392,8 @@ function BattleEngine(){
             }
         }
         if(currentBattleInfo[5][0] != [0,-0.2] && moveType == "spe" && !(currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
-            console.log(currentBattleInfo[5][0][0])
-            currentBattleInfo[5][0][0] += 1
-            if(currentBattleInfo[5][0][0] == 51){
+            currentBattleInfo[5][0][0] += 2
+            if(currentBattleInfo[5][0][0] == 52){
                 currentBattleInfo[5][0][0] = 0
                 currentBattleInfo[5][0][1] = -0.2
             }
