@@ -24,7 +24,7 @@ function loadNPCS(){
     }
 }
 function loadHouse0(){
-    Object.assign(overworldPos, player) // where in the overworld the player was when they enterd the room
+    Object.assign(overworldPos, player) // where in the overworld the player was when they entered the room
     Object.assign(overworldMap, map)
     player.inOverworld = false
     map.colision = MapColision.house0 
@@ -47,18 +47,19 @@ function loadHouse0(){
     loadNPCS()
 }
 function loadRoom0(){
-    if(returningToCheckPoint == false){
-        Object.assign(map, overworldMap)
-        Object.assign(player, overworldPos) // where in the overworld the player was when they entered the room
-    }else{
-        Object.assign(map, lastCheckPoint[1])
-        Object.assign(player, lastCheckPoint[2])
-        returningToCheckPoint = false
-    }
+    Object.assign(map, overworldMap)
+    Object.assign(player, overworldPos) // where in the overworld the player was when they entered the room
     player.inOverworld = true
     player.y += 1
     player.yMovement = 16
     player.Direction = 0
     loadNPCS()
     room1.src = "room0.png"
+}
+function returnToCheckPoint(){
+    Object.assign(map, lastCheckPoint[1])
+    Object.assign(player, lastCheckPoint[2])
+    returningToCheckPoint = false
+    loadNPCS()
+    room1.src = lastCheckPoint[3]
 }

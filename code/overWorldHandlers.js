@@ -136,78 +136,99 @@ function overWorldHandler(){
    }else if(player.inOverworld == false && map.colision[player.y][player.x] == 3 && player.xMovement == 0 && player.yMovement == 0){
        loadRoom0()
    }
-if (keyX == true && textshowing == false && player.xMovement == 0 && player.yMovement == 0){
-    if(player.Direction == 1 && typeof map.colision[player.y - 1][player.x] == "string"){
-        if(map.colision[player.y - 1][player.x].substring(0,3) == "npc"){
-            npcstocheck = map.npcs.length - 1
-            while(npcstocheck >= 0){
-                if(map.npcs[npcstocheck][5] == player.y - 1 && map.npcs[npcstocheck][4] == player.x){
-                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][1].src
-                    textshowing = true
-                    onScreenText = '' 
-                    onScreenText += map.npcs[npcstocheck][6]
-                    onScreenText = onScreenText.split(",")
-                    keyX = false
-                    break
+    if (keyX == true && textshowing == false && player.xMovement == 0 && player.yMovement == 0){
+        if(player.Direction == 1 && typeof map.colision[player.y - 1][player.x] == "string"){
+            if(map.colision[player.y - 1][player.x].substring(0,3) == "npc"){
+                npcstocheck = map.npcs.length - 1
+                while(npcstocheck >= 0){
+                    if(map.npcs[npcstocheck][5] == player.y - 1 && map.npcs[npcstocheck][4] == player.x){
+                        map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][1].src
+                        textshowing = true
+                        onScreenText = '' 
+                        onScreenText += map.npcs[npcstocheck][6]
+                        onScreenText = onScreenText.split(",")
+                        keyX = false
+                        if(map.colision[player.y - 1][player.x].substring(4) == "0"){
+                            changeCheckPoint = true
+                        }
+                        break
+                    }
+                    npcstocheck -= 1
                 }
-                npcstocheck -= 1
             }
-        }
-    }else if(player.Direction == 0 && typeof map.colision[player.y + 1][player.x] == "string"){
-        if(map.colision[player.y + 1][player.x].substring(0,3) == "npc"){
-            npcstocheck = map.npcs.length - 1
-            while(npcstocheck >= 0){
-                if(map.npcs[npcstocheck][5] == player.y + 1 && map.npcs[npcstocheck][4] == player.x){
-                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][3].src
-                    textshowing = true
-                    onScreenText = '' 
-                    onScreenText += map.npcs[npcstocheck][6]
-                    onScreenText = onScreenText.split(",")
-                    keyX = false
-                    break
+        }else if(player.Direction == 0 && typeof map.colision[player.y + 1][player.x] == "string"){
+            if(map.colision[player.y + 1][player.x].substring(0,3) == "npc"){
+                npcstocheck = map.npcs.length - 1
+                while(npcstocheck >= 0){
+                    if(map.npcs[npcstocheck][5] == player.y + 1 && map.npcs[npcstocheck][4] == player.x){
+                        map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][3].src
+                        textshowing = true
+                        onScreenText = '' 
+                        onScreenText += map.npcs[npcstocheck][6]
+                        onScreenText = onScreenText.split(",")
+                        keyX = false
+                        if(map.colision[player.y + 1][player.x].substring(4) == "0"){
+                            changeCheckPoint = true
+                        }
+                        break
+                    }
+                    npcstocheck -= 1
                 }
-                npcstocheck -= 1
             }
-        }
-    }else if(player.Direction == 2 && typeof map.colision[player.y][player.x - 1] == "string"){
-        if(map.colision[player.y][player.x - 1].substring(0,3) == "npc"){
-            npcstocheck = map.npcs.length - 1
-            while(npcstocheck >= 0){
-                if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x - 1){
-                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][4].src
-                    textshowing = true
-                    onScreenText = '' 
-                    onScreenText += map.npcs[npcstocheck][6]
-                    onScreenText = onScreenText.split(",")
-                    keyX = false
-                    break
+        }else if(player.Direction == 2 && typeof map.colision[player.y][player.x - 1] == "string"){
+            if(map.colision[player.y][player.x - 1].substring(0,3) == "npc"){
+                npcstocheck = map.npcs.length - 1
+                while(npcstocheck >= 0){
+                    if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x - 1){
+                        map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][4].src
+                        textshowing = true
+                        onScreenText = '' 
+                        onScreenText += map.npcs[npcstocheck][6]
+                        onScreenText = onScreenText.split(",")
+                        keyX = false
+                        if(map.colision[player.y][player.x - 1].substring(4) == "0"){
+                            changeCheckPoint = true
+                        }
+                        break
+                    }
+                    npcstocheck -= 1
                 }
-                npcstocheck -= 1
             }
-        }
-    }else if(player.Direction == 3 && typeof map.colision[player.y][player.x + 1] == "string"){
-        if(map.colision[player.y][player.x + 1].substring(0,3) == "npc"){
-            npcstocheck = map.npcs.length - 1
-            while(npcstocheck >= 0){
-                if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x + 1){
-                    map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][2].src
-                    textshowing = true
-                    onScreenText = '' 
-                    onScreenText += map.npcs[npcstocheck][6]
-                    onScreenText = onScreenText.split(",")
-                    keyX = false
-                    break
+        }else if(player.Direction == 3 && typeof map.colision[player.y][player.x + 1] == "string"){
+            if(map.colision[player.y][player.x + 1].substring(0,3) == "npc"){
+                npcstocheck = map.npcs.length - 1
+                while(npcstocheck >= 0){
+                    if(map.npcs[npcstocheck][5] == player.y && map.npcs[npcstocheck][4] == player.x + 1){
+                        map.npcs[npcstocheck][3][0].src = map.npcs[npcstocheck][3][2].src
+                        textshowing = true
+                        onScreenText = '' 
+                        onScreenText += map.npcs[npcstocheck][6]
+                        onScreenText = onScreenText.split(",")
+                        keyX = false
+                        if(map.colision[player.y][player.x + 1].substring(4) == "0"){
+                            changeCheckPoint = true
+                        }
+                        break
+                    }
+                    npcstocheck -= 1
                 }
-                npcstocheck -= 1
             }
         }
     }
-}
-if (keyX == true && textshowing == true){
-    onScreenText.shift()
-    onScreenText.shift()
-    if(onScreenText.length == 0)
-        textshowing = false
-        keyX = false
-}
+    if (keyX == true && textshowing == true){
+        onScreenText.shift()
+        onScreenText.shift()
+        if(onScreenText.length == 0)
+            textshowing = false
+            keyX = false
+    }
+    if(changeCheckPoint == true){
+        changeCheckPoint = false
+        Object.assign(lastCheckPoint[2], player)
+        console.log("Object.assign(lastCheckPoint[1], map) - map: " + JSON.stringify(map) + " lastCheckPoint[1]: " + JSON.stringify(lastCheckPoint[1]));
+        Object.assign(lastCheckPoint[1], map)
+        console.log("Object.assign(lastCheckPoint[1], map) - map: " + JSON.stringify(map) + " lastCheckPoint[1]: " + JSON.stringify(lastCheckPoint[1]));
+        lastCheckPoint[3] = room1.src
+        console.log("checkpoint set")
+    }
 }

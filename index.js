@@ -79,22 +79,18 @@ function init() {
     }
     playersBattlePokemonSprite = new Image()
     opponentsBattlePokemonSprite = new Image()
-    bag.src = "other_images/bag.png"
-    bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
-    scrolledInBag = 0 //how far down you are scrolled in the item viewer
-    selectedItem = 0
-    party = [[0,70.58,1,2,3,4,'','', 143],[3,7,1,2,3,4,'','', 22],[0,2,1,3,2,0,'','fredrick', 14],[3,100,1,3,2,4,'','mandy', 188]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
     selectedPartySlot = 0
     partySubMenu = false
     movingPokemon = -1
     map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
     loadNPCS()
     player = {player_name:"/name/", x: x, y: y, playerx: playerx, playery: playery, camerax: camerax, cameray: cameray, image: playerImage, AnimationProgress: AnimaionProgress, Direction: Directon, xCameraMovement: xCameraMovement, yCameraMovement: yCameraMovement, xMovement: xMovement, yMovement: yMovement, inOverworld:true}
-    lastCheckPoint = [function(){loadRoom0()}, Object, Object]// last place the player healed, what map they were in, where in that map they were 
+    lastCheckPoint = [function(){returnToCheckPoint()}, {}, {}, "room0.png"]// last place the player healed, what map they were in, where in that map they were, the image of the map they were in
     Object.assign(lastCheckPoint[1], map)
     Object.assign(lastCheckPoint[2], player) 
     returningToCheckPoint = false // whether the player just lost and is being teleported to a checkpoint
-    encounterPrimed = false //whether there will be an encounter when the player reaches the tile they are going to
+    changeCheckPoint = false // if set to true the checkpoint will be set to the players current location
+    encounterPrimed = false //whether there will be an encounter when the player reaches the tile they are walking to
     ctx.font = String(Math.floor(document.getElementById("canvas").height/8)) + "px Source Code Pro"
     function loop() {
         draw()
