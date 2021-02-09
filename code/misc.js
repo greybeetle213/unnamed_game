@@ -32,7 +32,7 @@ function loadHouse0(){
     map.height = 128 * pixelsize
     map.startingPos = [16 * pixelsize,16 * pixelsize]
     player.yMovement = -16
-    room1.src = "house_0.png"
+    room1.src = "terrain/house_0.png"
     player.x = 3
     player.y = 6
     player.playerx = 64 * pixelsize
@@ -42,7 +42,7 @@ function loadHouse0(){
     player.camerax = 0
     player.cameray = 0
     room1.onload = function() {console.log("loaded")}
-    room1.src = "house_0.png"
+    room1.src = "terrain/house_0.png"
     map.npcs = [[0,96*pixelsize,64*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],5,3,["all boys leave","home someday","it said so on","tv"] ]]//0=id in npcs 1=x, 2=y, 3=image,4=collision x, collision y, text
     loadNPCS()
 }
@@ -54,7 +54,7 @@ function loadRoom0(){
     player.yMovement = 16
     player.Direction = 0
     loadNPCS()
-    room1.src = "room0.png"
+    room1.src = "terrain/Home.png"
 }
 function returnToCheckPoint(){
     Object.assign(map, lastCheckPoint[1])

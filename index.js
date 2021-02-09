@@ -9,7 +9,7 @@ function init() {
     pixelsize = document.getElementById("canvas").width / 176 // define the size of  pixel all sizes are based around this
     canvas = document.getElementById("canvas")
     room1 = new Image()
-    room1.src = "room0.png"
+    room1.src = "terrain/Home.png"
     textbox = new Image()
     textbox.src = "text/text-template.png"
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",".", "@", "!", "'" , "?", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","/"] // @ is comma
@@ -47,8 +47,8 @@ function init() {
     yCameraMovement = "free"
     menu = "none"
     npcs = [["npcs/npc_mum_1.png","npcs/npc_mum_0.png","npcs/npc_mum_1.png","npcs/npc_mum_2.png","npcs/npc_mum_3.png"],["npcs/npc_youngster_3.png","npcs/npc_youngster_0.png","npcs/npc_youngster_1.png","npcs/npc_youngster_2.png","npcs/npc_youngster_3.png"]]
-    MapColision = {room0:[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0], [0, 0, 1, 2, 1, 3, 1, 2, 1, 0, 0], [0, 0, 1, 2, 2, 0, 2, 2, 1, 0, 0], [0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, "npc 1", 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, "npc 1", 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], house0:[[1,1,1,1,1,1,1,1,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,1,1,"npc 0",0,0,],[0,0,0,1,1,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,3,3,0,0,0,]]}
-    currentMapColision = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0], [0, 0, 1, 2, 1, 3, 1, 2, 1, 0, 0], [0, 0, 1, 2, 2, 0, 2, 2, 1, 0, 0], [0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, "npc 1", 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, "npc 1", 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    MapColision = {room0:[[1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,1,1,1,0,0,0,0,1],[1,0,0,1,1,1,1,1,1,1,0,0,1],[1,0,0,1,2,1,3,1,2,1,0,0,1],[1,0,0,1,2,2,0,2,2,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,"npc 1",0,1,1,1,0,1,1,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,"npc 1",1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,4,4,1,1,1,1,1,1],], house0:[[1,1,1,1,1,1,1,1,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,1,1,"npc 0",0,0,],[0,0,0,1,1,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,3,3,0,0,0,]]}
+    currentMapColision = [[1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,1,1,1,0,0,0,0,1],[1,0,0,1,1,1,1,1,1,1,0,0,1],[1,0,0,1,2,1,3,1,2,1,0,0,1],[1,0,0,1,2,2,0,2,2,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,"npc 1",0,1,1,1,0,1,1,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,"npc 1",1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,4,4,1,1,1,1,1,1],]
     //the colision for the current room
     currentMapPokemon = { levelRange: [2, 6], commonSpawns: [0, 3], uncommonSpawns: [0, 3], rareSpawns: [0, 3], ultraRareSpawns: [0, 3] }
     // common spawns have a 100/126 chance to spawn uncommon are 20/126 rare are 5/126 and ultraRare are 1/126 levelRange is the level the pokemon will spawn at the will spawn at a level between the first level and the second one minus one
@@ -56,11 +56,10 @@ function init() {
     camerax = 0
     playerx = pixelsize * 80
     playery = pixelsize * 64
-    x = 5// the players curren position in the grid. not in pixels. used for colision.
-    y = 4
+    x = 6// the players curren position in the grid. not in pixels. used for colision.
+    y = 5
     Directon = 0//
     AnimaionProgress = 2
-    startingPos = [0,0]
     miscImage = new Image
     bag = new Image
     currentBattleInfo = [] // opponents team, whether its a trainer battle, [name of first healthy pokemon in party,ect,index in party], stage in turn 1 = choseing act 1.1 = fighting 1.2 = item 1.3 = switching pokemon 2 = playing move animatoins, the message displayed at the bottom of the screen while in battle [line1,line2], animations in progress [physical, special, damage].
@@ -79,13 +78,19 @@ function init() {
     }
     playersBattlePokemonSprite = new Image()
     opponentsBattlePokemonSprite = new Image()
+    bag.src = "other_images/bag.png"
+    bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
+    scrolledInBag = 0 //how far down you are scrolled in the item viewer
+    selectedItem = 0
+    party = [[0,70.58,1,2,3,4,'','', 143],[3,7,1,2,3,4,'','', 22],[0,2,1,3,2,0,'','fredrick', 14],[3,100,1,3,2,4,'','mandy', 188]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
     selectedPartySlot = 0
     partySubMenu = false
     movingPokemon = -1
-    map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
+    //map = {colision:currentMapColision, width:document.getElementById("canvas").width, height:(document.getElementById("canvas").width * (2 + 8 / 11)),startingPos:startingPos, npcs:[[1,32*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,32*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
+    map = {colision:currentMapColision, width:208*pixelsize, height:256*pixelsize,startingPos:[-16*pixelsize, -16*pixelsize], npcs:[[1,16*pixelsize,112*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,7,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,16*pixelsize,160*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]}
     loadNPCS()
     player = {player_name:"/name/", x: x, y: y, playerx: playerx, playery: playery, camerax: camerax, cameray: cameray, image: playerImage, AnimationProgress: AnimaionProgress, Direction: Directon, xCameraMovement: xCameraMovement, yCameraMovement: yCameraMovement, xMovement: xMovement, yMovement: yMovement, inOverworld:true}
-    lastCheckPoint = [function(){returnToCheckPoint()}, {}, {}, "room0.png"]// last place the player healed, what map they were in, where in that map they were, the image of the map they were in
+    lastCheckPoint = [function(){returnToCheckPoint()}, {}, {}, "terrain/Home.png"]// last place the player healed, what map they were in, where in that map they were, the image of the map they were in
     Object.assign(lastCheckPoint[1], map)
     Object.assign(lastCheckPoint[2], player) 
     returningToCheckPoint = false // whether the player just lost and is being teleported to a checkpoint
