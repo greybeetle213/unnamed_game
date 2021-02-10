@@ -134,7 +134,12 @@ function overWorldHandler(){
    if (map.colision[player.y][player.x] == 3 && player.inOverworld == true && player.xMovement == 0 && player.yMovement == 0){
         loadHouse0()
    }else if(player.inOverworld == false && map.colision[player.y][player.x] == 3 && player.xMovement == 0 && player.yMovement == 0){
-       loadRoom0()
+        loadRoom0()
+   }else if(map.colision[player.y][player.x] == 4 && player.yMovement == 0 && map.image == "terrain/Home.png"){
+        console.log(player.y)
+        loadRute1()
+   }else if(map.colision[player.y][player.x] == 4 && player.yMovement == 0 && map.image == "terrain/rute1.png"){
+        returnFromRute1()
    }
     if (keyX == true && textshowing == false && player.xMovement == 0 && player.yMovement == 0){
         if(player.Direction == 1 && typeof map.colision[player.y - 1][player.x] == "string"){

@@ -17,7 +17,7 @@ function loadNPCS(){
         imagesToLoad = 4
         while(imagesToLoad >= 0){
             map.npcs[npcsToLoad][3][imagesToLoad].onload = function() {console.log("loaded")}
-            map.npcs[npcsToLoad][3][imagesToLoad].src =  npcs[map.npcs[npcsToLoad][0]][imagesToLoad]//NOTE: make loop to load all images from all npcs
+            map.npcs[npcsToLoad][3][imagesToLoad].src =  npcs[map.npcs[npcsToLoad][0]][imagesToLoad]
             imagesToLoad -= 1
         }
         npcsToLoad -= 1
@@ -31,6 +31,7 @@ function loadHouse0(){
     map.width = 128 * pixelsize
     map.height = 128 * pixelsize
     map.startingPos = [16 * pixelsize,16 * pixelsize]
+    map.image = "terrain/house_0.png"
     player.yMovement = -16
     room1.src = "terrain/house_0.png"
     player.x = 3
@@ -54,7 +55,47 @@ function loadRoom0(){
     player.yMovement = 16
     player.Direction = 0
     loadNPCS()
+    room1.src = map.image
+}
+function loadRute1(){
+    map.colision = MapColision.rute1 
+    map.width = 255 * pixelsize
+    map.height = 96 * pixelsize
+    map.startingPos = [64*pixelsize,16 * pixelsize]
+    player.x = 1
+    player.y = 1
+    player.playerx = 80 * pixelsize
+    player.playery = 16 * pixelsize
+    player.xCameraMovement = "free"
+    player.yCameraMovement = "fixed"
+    player.camerax = 0
+    player.cameray = 0
+    room1.onload = function() {console.log("loaded")}
+    room1.src = "terrain/rute1.png"
+    map.image = "terrain/rute1.png"
+    map.npcs = []
+    loadNPCS()
+    player.yMovement = 16
+}
+function returnFromRute1(){
+    map.colision = MapColision.room0 
+    map.width = 208 * pixelsize
+    map.height = 256 * pixelsize
+    map.startingPos = [-16*pixelsize,-176 * pixelsize]
+    player.x = 6
+    player.y = 14
+    player.playerx = 80 * pixelsize
+    player.playery = 64 * pixelsize
+    player.xCameraMovement = "fixed"
+    player.yCameraMovement = "free"
+    player.camerax = 0
+    player.cameray = 0
+    room1.onload = function() {console.log("loaded")}
     room1.src = "terrain/Home.png"
+    map.image = "terrain/Home.png"
+    map.npcs = [[1,16*pixelsize,(112-144)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,8,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,16*pixelsize,(144-144)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]
+    loadNPCS()
+    player.yMovement = -16
 }
 function returnToCheckPoint(){
     Object.assign(map, lastCheckPoint[1])
