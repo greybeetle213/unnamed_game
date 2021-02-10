@@ -93,7 +93,7 @@ function returnFromRute1(){
     room1.onload = function() {console.log("loaded")}
     room1.src = "terrain/Home.png"
     map.image = "terrain/Home.png"
-    map.npcs = [[1,16*pixelsize,(112-144)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,8,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,16*pixelsize,(144-144)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]
+    map.npcs = [[1,16*pixelsize,(112-160)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,8,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,16*pixelsize,(144-160)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]
     loadNPCS()
     player.yMovement = -16
 }
