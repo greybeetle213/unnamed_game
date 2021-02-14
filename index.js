@@ -78,6 +78,8 @@ function init() {
     }
     playersBattlePokemonSprite = new Image()
     opponentsBattlePokemonSprite = new Image()
+    opponetsStatModifyers = [1,1,1,1,1,1,1] //atk,def,sp.atk,sp.def,spd
+    playersStatModyfyers = [1,1,1,1,1,1,1] //atk,def,sp.atk,sp.def,spd
     bag.src = "other_images/bag.png"
     bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
     scrolledInBag = 0 //how far down you are scrolled in the item viewer

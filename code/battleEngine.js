@@ -377,6 +377,7 @@ function BattleEngine(){
             var power = moveDex[currentBattleInfo[2][2+selectedMenuSlot]][1]
             if(moveType == "phy"){
                 var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][1]+8)*lvl)/100+5)
+                atk *= playersStatModyfyers[0]
                 var def = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][2]+8)*lvl)/100+5)
             }else{
                 var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][3]+8)*lvl)/100+5)
@@ -395,6 +396,7 @@ function BattleEngine(){
             //console.log(moveType)
             if(moveType == "phy"){
                 var atk = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][1]+8)*currentBattleInfo[0][1])/100+5)
+                atk *= opponetsStatModifyers[0]
                 var def = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][2]+8)*currentBattleInfo[2][1])/100+5)
             }else{
                 var atk = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][3]+8)*currentBattleInfo[0][1])/100+5)
@@ -403,6 +405,13 @@ function BattleEngine(){
             currentBattleInfo[2][8] -= (((2*lvl/5)+2)*power*atk/def)/50
             if(currentBattleInfo[2][8] < 0){
                 currentBattleInfo[2][8] = 0
+            }
+            if(moveDex[enemysMove][5] != ""){
+                if(moveDex[enemysMove][5].substr(0,3) == "foe"){
+                    if(moveDex[enemysMove][5].substr(4,3) == "atk" && playersStatModyfyers[0] >= 0.5){
+                        playersStatModyfyers[0] -= 0.1
+                    }
+                }
             }
             console.log([lvl,power,atk,def])
         }
