@@ -138,77 +138,69 @@ function BattleEngine(){
         }
     }
     if(keyX == true){
-        if(currentBattleInfo[3] == 1){
-            if(selectedMenuSlot == 0){
-                currentBattleInfo[4] = ["",""]
-                currentBattleInfo[3] = 1.1
-            }
-            if(selectedMenuSlot == 3){
-                if(currentBattleInfo[2][1] > currentBattleInfo[0][1]){
-                    currentBattleInfo[3] = 0
-                    currentBattleInfo[4] = ["got away safely",""]
-                    setTimeout(function(){menu = "none"}, 500)
-                }else{
-                    currentBattleInfo[3] = 0
-                    currentBattleInfo[4] = ["couldn't get away",""]
-                    setTimeout(function(){
-                        currentBattleInfo[3] = 1
-                        if(currentBattleInfo[2][7] == ""){
-                            currentBattleInfo[4] = ["what will", pokedex[currentBattleInfo[2][0]][0]+" do?"]
-                        }else{
-                            currentBattleInfo[4] = ["what will", currentBattleInfo[2][7]+" do?"]
-                        }
-                    }, 500)
-                }
-            }
+        if(currentBattleInfo[4].length > 2){
+            currentBattleInfo[4].shift()
+            currentBattleInfo[4].shift()
+            keyX = false
+        }else{
             if(currentBattleInfo[3] == 1){
-                currentBattleInfo[3] = 1.2
-                keyX = false
-            }
-        }else if(currentBattleInfo[3] == 1.1 && currentBattleInfo[2][2+selectedMenuSlot] != 0){
-            currentBattleInfo[3] = 2.1
-            var useableMoves = [] // moves the enemy pokemon can use 
-            if(currentBattleInfo[0][2] != 0){
-                useableMoves.push(currentBattleInfo[0][2])
-            }
-            if(currentBattleInfo[0][3] != 0){
-                useableMoves.push(currentBattleInfo[0][3])
-            }
-            if(currentBattleInfo[0][4] != 0){
-                useableMoves.push(currentBattleInfo[0][4])
-            }
-            if(currentBattleInfo[0][5] != 0){
-                useableMoves.push(currentBattleInfo[0][5])
-            }
-            enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
-            //console.log(enemysMove)
-            if(Math.round(((2*pokedex[currentBattleInfo[2][0]][1][4]+8)*currentBattleInfo[2][1])/100+5) >= Math.round(((2*pokedex[currentBattleInfo[0][0]][1][4]+8)*currentBattleInfo[0][1])/100+5)){
-                currentBattleInfo[5] = [[0,0.2],0,"own"]
-                if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
-                    moveType = "phy"
-                }else{
-                    moveType = "spe"
+                if(selectedMenuSlot == 0){
+                    currentBattleInfo[4] = ["",""]
+                    currentBattleInfo[3] = 1.1
                 }
-            }else{
-                currentBattleInfo[5] = [[0,0.2],0,"foe"]
-                if(moveDex[enemysMove][4] == "phy"){
-                    moveType = "phy"
-                }else{
-                    moveType = "spe"
-                }
-                console.log(moveType)
-            }
-        }
-        if(currentBattleInfo[3] == 2.1 && currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2){
-            if(currentBattleInfo[0][6] != 0){
-                currentBattleInfo[5][0] = [0.0, 0.2]
-                currentBattleInfo[3] = 2.2
-                if(currentBattleInfo[5][2] == "foe"){
-                    currentBattleInfo[5] = [[0,0.2],0,"own"]
-                    if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
-                        moveType = "phy"
+                if(selectedMenuSlot == 3){
+                    if(currentBattleInfo[2][1] > currentBattleInfo[0][1]){
+                        currentBattleInfo[3] = 0
+                        currentBattleInfo[4] = ["got away safely",""]
+                        setTimeout(function(){menu = "none"}, 500)
                     }else{
-                        moveType = "spe"
+                        currentBattleInfo[3] = 0
+                        currentBattleInfo[4] = ["couldn't get away",""]
+                        setTimeout(function(){
+                            currentBattleInfo[3] = 1
+                            if(currentBattleInfo[2][7] == ""){
+                                currentBattleInfo[4] = ["what will", pokedex[currentBattleInfo[2][0]][0]+" do?"]
+                            }else{
+                                currentBattleInfo[4] = ["what will", currentBattleInfo[2][7]+" do?"]
+                            }
+                        }, 500)
+                    }
+                }
+                if(currentBattleInfo[3] == 1){
+                    currentBattleInfo[3] = 1.2
+                    keyX = false
+                }
+            }else if(currentBattleInfo[3] == 1.1 && currentBattleInfo[2][2+selectedMenuSlot] != 0){
+                currentBattleInfo[3] = 2.1
+                var useableMoves = [] // moves the enemy pokemon can use 
+                if(currentBattleInfo[0][2] != 0){
+                    useableMoves.push(currentBattleInfo[0][2])
+                }
+                if(currentBattleInfo[0][3] != 0){
+                    useableMoves.push(currentBattleInfo[0][3])
+                }
+                if(currentBattleInfo[0][4] != 0){
+                    useableMoves.push(currentBattleInfo[0][4])
+                }
+                if(currentBattleInfo[0][5] != 0){
+                    useableMoves.push(currentBattleInfo[0][5])
+                }
+                enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
+                //console.log(enemysMove)
+                if(Math.round(((2*pokedex[currentBattleInfo[2][0]][1][4]+8)*currentBattleInfo[2][1])/100+5) >= Math.round(((2*pokedex[currentBattleInfo[0][0]][1][4]+8)*currentBattleInfo[0][1])/100+5)){ 
+                    console.log("fired "+currentBattleInfo[3])
+                    if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < Math.round(Math.random()*100)){
+                        moveType = "miss"
+                        keyX = false
+                        currentBattleInfo[4] = ["the attack missed", ""]
+                        console.log("miss")
+                    }else{
+                        currentBattleInfo[5] = [[0,0.2],0,"own"]
+                        if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
+                            moveType = "phy"
+                        }else{
+                            moveType = "spe"
+                        }
                     }
                 }else{
                     currentBattleInfo[5] = [[0,0.2],0,"foe"]
@@ -219,151 +211,173 @@ function BattleEngine(){
                     }
                     console.log(moveType)
                 }
-            }else{
-                currentBattleInfo[3] = 0
-                currentBattleInfo[4] = ["the opposing", "pokemon fainted"]
-                setTimeout(function(){
-                    var battleType = currentBattleInfo[1]
-                    var lvl = currentBattleInfo[0][1]
-                    var ownlvl = currentBattleInfo[2][1]
-                    if(ownlvl < 100){
-                        console.log(ownlvl)
-                        currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
-                        console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
-                        if(currentBattleInfo[2][7] == ""){
-                            currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
+            }
+            if(currentBattleInfo[3] == 2.1 && ((currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)||moveType == "miss")){
+                if(currentBattleInfo[0][6] != 0){
+                    currentBattleInfo[5][0] = [0.0, 0.2]
+                    currentBattleInfo[3] = 2.2
+                    if(currentBattleInfo[5][2] == "foe"){
+                        currentBattleInfo[5] = [[0,0.2],0,"own"]
+                        if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
+                            moveType = "phy"
                         }else{
-                            currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
+                            moveType = "spe"
                         }
                     }else{
-                        if(currentBattleInfo[2][7] == ""){
-                            currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", "0 exp"]
+                        currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                        if(moveDex[enemysMove][4] == "phy"){
+                            moveType = "phy"
                         }else{
-                            currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", "0 exp"]
+                            moveType = "spe"
                         }
+                        console.log(moveType)
                     }
-                },500)
-                setTimeout(function(){
-                    menu = "none"
-                }, 1000)
-            }
-        }else if((currentBattleInfo[3] == 2.2 && currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
-            if(currentBattleInfo[0][6] != 0){
-                currentBattleInfo[3] = 1
-            }else{
-                currentBattleInfo[3] = 0
-                currentBattleInfo[4] = ["the opposing", "pokemon fainted"]
-                setTimeout(function(){
-                    var battleType = currentBattleInfo[1]
-                    var lvl = currentBattleInfo[0][1]
-                    var ownlvl = currentBattleInfo[2][1]
-                    if(ownlvl < 100){
-                        console.log(ownlvl)
-                        currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
-                        console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
-                        currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
-                    }else{
-                        currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", "0 exp"]
-                    }
-                },500)
-                setTimeout(function(){
-                    menu = "none"
-                }, 1000)
-            }
-        }
-        if (currentBattleInfo[3] == 2.3){
-            currentBattleInfo[3] = 2.5
-            currentBattleInfo[5][0] = [0.0, 0.2]
-            var useableMoves = [] // moves the enemy pokemon can use 
-            if(currentBattleInfo[0][2] != 0){
-                useableMoves.push(currentBattleInfo[0][2])
-            }
-            if(currentBattleInfo[0][3] != 0){
-                useableMoves.push(currentBattleInfo[0][3])
-            }
-            if(currentBattleInfo[0][4] != 0){
-                useableMoves.push(currentBattleInfo[0][4])
-            }
-            if(currentBattleInfo[0][5] != 0){
-                useableMoves.push(currentBattleInfo[0][5])
-            }
-            enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
-            //console.log(enemysMove)
-            currentBattleInfo[5] = [[0,0.2],0,"foe"]
-            if(moveDex[enemysMove][4] == "phy"){
-                moveType = "phy"
-            }else{
-                moveType = "spe"
-            }
-            console.log(moveType)
-            
-            currentBattleInfo[5][2] = "foe"
-        }else if(currentBattleInfo[3] == 2.5){
-            if(currentBattleInfo[0][6] != 0){
-                currentBattleInfo[5][0] = [0.0, 0.2]
-                currentBattleInfo[3] = 1
-                if(currentBattleInfo[5][2] == "own"){
-                    currentBattleInfo[5][2] = "foe"
                 }else{
-                    currentBattleInfo[5][2] = "own"
+                    currentBattleInfo[3] = 0
+                    currentBattleInfo[4] = ["the opposing", "pokemon fainted"]
+                    setTimeout(function(){
+                        var battleType = currentBattleInfo[1]
+                        var lvl = currentBattleInfo[0][1]
+                        var ownlvl = currentBattleInfo[2][1]
+                        if(ownlvl < 100){
+                            console.log(ownlvl)
+                            currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
+                            console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
+                            if(currentBattleInfo[2][7] == ""){
+                                currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
+                            }else{
+                                currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
+                            }
+                        }else{
+                            if(currentBattleInfo[2][7] == ""){
+                                currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", "0 exp"]
+                            }else{
+                                currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", "0 exp"]
+                            }
+                        }
+                    },500)
+                    setTimeout(function(){
+                        menu = "none"
+                    }, 1000)
                 }
-            }else{
-                currentBattleInfo[3] = 0
-                currentBattleInfo[4] = ["the opposing", "pokemon fainted"]
-                setTimeout(function(){
-                    var battleType = currentBattleInfo[1]
-                    var lvl = currentBattleInfo[0][1]
-                    var ownlvl = currentBattleInfo[2][1]
-                    if(ownlvl < 100){
-                        console.log(ownlvl)
-                        currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
-                        console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
-                        if(currentBattleInfo[2][7] == ""){
+            }else if((currentBattleInfo[3] == 2.2 && currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
+                if(currentBattleInfo[0][6] != 0){
+                    currentBattleInfo[3] = 1
+                }else{
+                    currentBattleInfo[3] = 0
+                    currentBattleInfo[4] = ["the opposing", "pokemon fainted"]
+                    setTimeout(function(){
+                        var battleType = currentBattleInfo[1]
+                        var lvl = currentBattleInfo[0][1]
+                        var ownlvl = currentBattleInfo[2][1]
+                        if(ownlvl < 100){
+                            console.log(ownlvl)
+                            currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
+                            console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
                             currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
                         }else{
-                            currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
-                        }
-                    }else{
-                        if(currentBattleInfo[2][7] == ""){
                             currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", "0 exp"]
-                        }else{
-                            currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", "0 exp"]
                         }
-                    }
-                },500)
-                setTimeout(function(){
-                    menu = "none"
-                }, 1000)
-            }
-        }
-        if(currentBattleInfo[2][8] <= 0){
-            keyX = false
-            console.log("a")
-            var pokemonChecked 
-            for(pokemonChecked = 0; pokemonChecked < party.length; pokemonChecked ++){
-                if(party[pokemonChecked][8] > 0){
-                    break
+                    },500)
+                    setTimeout(function(){
+                        menu = "none"
+                    }, 1000)
                 }
             }
-            if(pokemonChecked != party.length){
-                currentBattleInfo[3] = 1.2
-                console.log("b")
-            }else{
-                console.log("")
-                menu = "none"
+            if (currentBattleInfo[3] == 2.3){
+                currentBattleInfo[3] = 2.5
+                currentBattleInfo[5][0] = [0.0, 0.2]
+                var useableMoves = [] // moves the enemy pokemon can use 
+                if(currentBattleInfo[0][2] != 0){
+                    useableMoves.push(currentBattleInfo[0][2])
+                }
+                if(currentBattleInfo[0][3] != 0){
+                    useableMoves.push(currentBattleInfo[0][3])
+                }
+                if(currentBattleInfo[0][4] != 0){
+                    useableMoves.push(currentBattleInfo[0][4])
+                }
+                if(currentBattleInfo[0][5] != 0){
+                    useableMoves.push(currentBattleInfo[0][5])
+                }
+                enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
+                //console.log(enemysMove)
+                currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                if(moveDex[enemysMove][4] == "phy"){
+                    moveType = "phy"
+                }else{
+                    moveType = "spe"
+                }
+                console.log(moveType)
+                
+                currentBattleInfo[5][2] = "foe"
+            }else if(currentBattleInfo[3] == 2.5){
+                if(currentBattleInfo[0][6] != 0){
+                    currentBattleInfo[5][0] = [0.0, 0.2]
+                    currentBattleInfo[3] = 1
+                    if(currentBattleInfo[5][2] == "own"){
+                        currentBattleInfo[5][2] = "foe"
+                    }else{
+                        currentBattleInfo[5][2] = "own"
+                    }
+                }else{
+                    currentBattleInfo[3] = 0
+                    currentBattleInfo[4] = ["the opposing", "pokemon fainted"]
+                    setTimeout(function(){
+                        var battleType = currentBattleInfo[1]
+                        var lvl = currentBattleInfo[0][1]
+                        var ownlvl = currentBattleInfo[2][1]
+                        if(ownlvl < 100){
+                            console.log(ownlvl)
+                            currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
+                            console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
+                            if(currentBattleInfo[2][7] == ""){
+                                currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
+                            }else{
+                                currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
+                            }
+                        }else{
+                            if(currentBattleInfo[2][7] == ""){
+                                currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", "0 exp"]
+                            }else{
+                                currentBattleInfo[4] = [currentBattleInfo[2][7] + " gained ", "0 exp"]
+                            }
+                        }
+                    },500)
+                    setTimeout(function(){
+                        menu = "none"
+                    }, 1000)
+                }
+            }
+            if(currentBattleInfo[2][8] <= 0){
+                keyX = false
+                console.log("a")
+                var pokemonChecked 
                 for(pokemonChecked = 0; pokemonChecked < party.length; pokemonChecked ++){
-                    Heal(pokemonChecked)
-                }
-                returningToCheckPoint = true
-                setTimeout(
-                    function(){
-                        lastCheckPoint[0]()
+                    if(party[pokemonChecked][8] > 0){
+                        break
                     }
-                ,3000)
+                }
+                if(pokemonChecked != party.length){
+                    currentBattleInfo[3] = 1.2
+                    console.log("b")
+                }else{
+                    console.log("")
+                    menu = "none"
+                    for(pokemonChecked = 0; pokemonChecked < party.length; pokemonChecked ++){
+                        Heal(pokemonChecked)
+                    }
+                    returningToCheckPoint = true
+                    setTimeout(
+                        function(){
+                            lastCheckPoint[0]()
+                        }
+                    ,3000)
+                }
             }
-        }
-        if(currentBattleInfo[3] != 1.2){
-            keyX = false
+            if(currentBattleInfo[3] != 1.2){
+                keyX = false
+            }
         }
     }
     if(currentBattleInfo[3] == 2.1 || currentBattleInfo[3] == 2.2 || currentBattleInfo[3] == 2.5){
@@ -384,6 +398,18 @@ function BattleEngine(){
                 var def = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][6]+8)*lvl)/100+5)
             }
             currentBattleInfo[0][6] -= (((2*lvl/5)+2)*power*atk/def)/50
+            if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5] != "none"){
+                if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5].substr(0,3) == "foe"){
+                    if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5].substr(4,3) == "atk" && opponetsStatModifyers[0] >= 0.5){
+                        opponetsStatModifyers[0] -= 0.1
+                        currentBattleInfo[4].push("lowered "+pokedex[currentBattleInfo[0][0]][0]+"'s")
+                        currentBattleInfo[4].push("attack by one stage")
+                    }else if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5].substr(4,3) == "atk"){
+                        currentBattleInfo[4].push("couldn't lower "+pokedex[currentBattleInfo[0][0]][0]+"'s")
+                        currentBattleInfo[4].push("attack any further")
+                    }
+                }
+            }
             if(currentBattleInfo[0][6] < 0){
                 currentBattleInfo[0][6] = 0
             }
@@ -406,10 +432,15 @@ function BattleEngine(){
             if(currentBattleInfo[2][8] < 0){
                 currentBattleInfo[2][8] = 0
             }
-            if(moveDex[enemysMove][5] != ""){
+            if(moveDex[enemysMove][5] != "none"){
                 if(moveDex[enemysMove][5].substr(0,3) == "foe"){
                     if(moveDex[enemysMove][5].substr(4,3) == "atk" && playersStatModyfyers[0] >= 0.5){
                         playersStatModyfyers[0] -= 0.1
+                        currentBattleInfo[4].push("lowered "+pokedex[currentBattleInfo[2][0]][0]+"'s")
+                        currentBattleInfo[4].push("attack by one stage")
+                    }else if(moveDex[enemysMove][5].substr(4,3) == "atk"){
+                        currentBattleInfo[4].push("couldn't lower "+pokedex[currentBattleInfo[2][0]][0]+"'s")
+                        currentBattleInfo[4].push("attack any further")
                     }
                 }
             }

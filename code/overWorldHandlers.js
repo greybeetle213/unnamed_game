@@ -114,7 +114,7 @@ function overWorldHandler(){
         } else {
             pokemon = currentMapPokemon.ultraRareSpawns[Math.floor(Math.random() * currentMapPokemon.ultraRareSpawns.length)]
         }
-        currentBattleInfo = [[pokemon,lvl,2,0,0,0,Math.round((2*pokedex[pokemon][1][0]*lvl)/100+lvl+10)],1]
+        currentBattleInfo = [[pokemon,lvl,2,1,1,3,Math.round((2*pokedex[pokemon][1][0]*lvl)/100+lvl+10)],1]
         for (counter = 0; counter < party.length; counter ++){
             if(party[counter][8] > 0){
                 currentBattleInfo.push(party[counter])
