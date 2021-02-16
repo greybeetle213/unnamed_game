@@ -171,6 +171,7 @@ function BattleEngine(){
                     keyX = false
                 }
             }else if(currentBattleInfo[3] == 1.1 && currentBattleInfo[2][2+selectedMenuSlot] != 0){
+                console.log(currentBattleInfo[3])
                 currentBattleInfo[3] = 2.1
                 var useableMoves = [] // moves the enemy pokemon can use 
                 if(currentBattleInfo[0][2] != 0){
@@ -188,10 +189,13 @@ function BattleEngine(){
                 enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
                 //console.log(enemysMove)
                 if(Math.round(((2*pokedex[currentBattleInfo[2][0]][1][4]+8)*currentBattleInfo[2][1])/100+5) >= Math.round(((2*pokedex[currentBattleInfo[0][0]][1][4]+8)*currentBattleInfo[0][1])/100+5)){ 
-                    console.log("fired "+currentBattleInfo[3])
-                    if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < Math.round(Math.random()*100)){
+                    //console.log("fired "+currentBattleInfo[3])
+                    var acuracyRoll = Math.round(Math.random()*100)
+                    console.log(acuracyRoll)
+                    if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < acuracyRoll){
                         moveType = "miss"
                         keyX = false
+                        currentBattleInfo[5] = [[0,0.2],0,"own"]
                         currentBattleInfo[4] = ["the attack missed", ""]
                         console.log("miss")
                     }else{
@@ -211,8 +215,7 @@ function BattleEngine(){
                     }
                     console.log(moveType)
                 }
-            }
-            if(currentBattleInfo[3] == 2.1 && ((currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)||moveType == "miss")){
+            }else if(currentBattleInfo[3] == 2.1 && ((currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)||moveType == "miss")){
                 if(currentBattleInfo[0][6] != 0){
                     currentBattleInfo[5][0] = [0.0, 0.2]
                     currentBattleInfo[3] = 2.2
@@ -380,7 +383,7 @@ function BattleEngine(){
             }
         }
     }
-    if(currentBattleInfo[3] == 2.1 || currentBattleInfo[3] == 2.2 || currentBattleInfo[3] == 2.5){
+    if((currentBattleInfo[3] == 2.1 || currentBattleInfo[3] == 2.2 || currentBattleInfo[3] == 2.5) && moveType != "miss"){
         if(currentBattleInfo[5][2] == "own" && ((currentBattleInfo[5][0][0] >= 4 && moveType == "phy") || (currentBattleInfo[5][0][0] >= 50 && moveType == "spe"))){
             if(currentBattleInfo[2][7] == ""){
                 currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0]+" used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0]]
