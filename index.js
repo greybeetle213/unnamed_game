@@ -67,7 +67,7 @@ function init() {
     battleAnimationProgress = 0
     itemDex = [["pokeball", "item", ["a device for capturing pokemon", ""]], ["greatball", "item", ["a better device for capturing", "pokemon"]], ["pokedex", "KeyItem", ["lets you keep track of captured", "pokemon"]], ["hm 01", "Tm Hm", ["cuts down small trees", "if taught to a pokemon"]] ]
     pokedex = [['bulbasaur',[45,49,49,65,45,0,65,"grass"], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['charmander',[39,52,43,60,65, 1,50,"fire"],[]],['Charmelion'],['Charizard'],['caterpie',[10, 5,5,5,5,1],[]]] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape sp.def], [move, level.learned]]
-    moveDex = [["....."],["scratch", 40, 35, 100, "phy", "none", "normal"], ["growl", 0, 40, 100, "phy","foe atk -1", "normal"], ["ember", 40, 40, 100, "spe","bur", "fire"], ["sand attack", 0, 15, 100, "spe", "foe acu -1", "ground"], ["hydro pump", 110, 5, 10, "spe", "none", "water"]] // name, power, power points, acuracy (percent), specail/physical, effects (eg. poison, attack drop ect.), type
+    moveDex = [["....."],["scratch", 40, 35, 100, "phy", "none", "normal"], ["growl", 0, 40, 100, "phy","foe atk -1", "normal"], ["ember", 40, 40, 100, "spe","bur", "fire"], ["sand attack", 0, 15, 100, "spe", "foe acu -1", "ground"], ["hydro pump", 110, 5, 80, "spe", "none", "water"]] // name, power, power points, acuracy (percent), specail/physical, effects (eg. poison, attack drop ect.), type
     pokemonShapes = [new Image, new Image, new Image, new Image,new Image, new Image, new Image, new Image,new Image, new Image]
     for (counter = 0; counter != 10; counter ++){
         if (counter != 10){ 

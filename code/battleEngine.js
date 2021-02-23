@@ -196,7 +196,11 @@ function BattleEngine(){
                         moveType = "miss"
                         keyX = false
                         currentBattleInfo[5] = [[0,0.2],0,"own"]
-                        currentBattleInfo[4] = ["the attack missed", ""]
+                        if(currentBattleInfo[2][7] == ""){
+                            currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
+                        }else{
+                            currentBattleInfo[4] = [currentBattleInfo[2][7] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
+                        }
                         console.log("miss")
                     }else{
                         currentBattleInfo[5] = [[0,0.2],0,"own"]
@@ -207,24 +211,47 @@ function BattleEngine(){
                         }
                     }
                 }else{
-                    currentBattleInfo[5] = [[0,0.2],0,"foe"]
-                    if(moveDex[enemysMove][4] == "phy"){
-                        moveType = "phy"
+                    var acuracyRoll = Math.round(Math.random()*100)
+                    console.log(acuracyRoll)
+                    if(moveDex[enemysMove][3] < acuracyRoll){
+                        moveType = "miss"
+                        keyX = false
+                        currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                        currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0] + " used ", moveDex[enemysMove][0], "but it missed", ""]
+                        console.log("miss")
                     }else{
-                        moveType = "spe"
+                        currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                        if(moveDex[enemysMove][4] == "phy"){
+                            moveType = "phy"
+                        }else{
+                            moveType = "spe"
+                        }
+                        console.log(moveType)
                     }
-                    console.log(moveType)
                 }
             }else if(currentBattleInfo[3] == 2.1 && ((currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)||moveType == "miss")){
                 if(currentBattleInfo[0][6] != 0){
                     currentBattleInfo[5][0] = [0.0, 0.2]
                     currentBattleInfo[3] = 2.2
                     if(currentBattleInfo[5][2] == "foe"){
-                        currentBattleInfo[5] = [[0,0.2],0,"own"]
-                        if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
-                            moveType = "phy"
+                        var acuracyRoll = Math.round(Math.random()*100)
+                        console.log(acuracyRoll)
+                        if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < acuracyRoll){
+                            moveType = "miss"
+                            keyX = false
+                            currentBattleInfo[5] = [[0,0.2],0,"own"]
+                            if(currentBattleInfo[2][7] == ""){
+                                currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
+                            }else{
+                                currentBattleInfo[4] = [currentBattleInfo[2][7] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
+                            }                            console.log("miss")
                         }else{
-                            moveType = "spe"
+                            currentBattleInfo[5] = [[0,0.2],0,"own"]
+                            if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
+                                moveType = "phy"
+                            }else{
+                                moveType = "spe"
+                            }
                         }
                     }else{
                         currentBattleInfo[5] = [[0,0.2],0,"foe"]
@@ -304,7 +331,6 @@ function BattleEngine(){
                     useableMoves.push(currentBattleInfo[0][5])
                 }
                 enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
-                //console.log(enemysMove)
                 currentBattleInfo[5] = [[0,0.2],0,"foe"]
                 if(moveDex[enemysMove][4] == "phy"){
                     moveType = "phy"
