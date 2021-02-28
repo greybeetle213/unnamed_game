@@ -212,7 +212,7 @@ function BattleEngine(){
                     }
                 }else{
                     var acuracyRoll = Math.round(Math.random()*100)
-                    console.log(acuracyRoll)
+                    console.log("enemey acuracy "+acuracyRoll)
                     if(moveDex[enemysMove][3] < acuracyRoll){
                         moveType = "miss"
                         keyX = false
@@ -254,13 +254,23 @@ function BattleEngine(){
                             }
                         }
                     }else{
-                        currentBattleInfo[5] = [[0,0.2],0,"foe"]
-                        if(moveDex[enemysMove][4] == "phy"){
-                            moveType = "phy"
+                        var acuracyRoll = Math.round(Math.random()*100)
+                        console.log("enemey acuracy "+acuracyRoll)
+                        if(moveDex[enemysMove][3] < acuracyRoll){
+                            moveType = "miss"
+                            keyX = false
+                            currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                            currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0] + " used ", moveDex[enemysMove][0], "but it missed", ""]
+                            console.log("miss")
                         }else{
-                            moveType = "spe"
+                            currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                            if(moveDex[enemysMove][4] == "phy"){
+                                moveType = "phy"
+                            }else{
+                                moveType = "spe"
+                            }
+                            console.log(moveType)
                         }
-                        console.log(moveType)
                     }
                 }else{
                     currentBattleInfo[3] = 0
@@ -290,7 +300,7 @@ function BattleEngine(){
                         menu = "none"
                     }, 1000)
                 }
-            }else if((currentBattleInfo[3] == 2.2 && currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
+            }else if((currentBattleInfo[3] == 2.2 && currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)||(currentBattleInfo[3] == 2.2 && moveType == "miss")){
                 if(currentBattleInfo[0][6] != 0){
                     currentBattleInfo[3] = 1
                 }else{
