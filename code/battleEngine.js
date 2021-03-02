@@ -166,8 +166,12 @@ function BattleEngine(){
                         }, 500)
                     }
                 }
-                if(currentBattleInfo[3] == 1){
+                if(currentBattleInfo[3] == 1 && selectedMenuSlot == 1){
                     currentBattleInfo[3] = 1.2
+                    keyX = false
+                }
+                if(currentBattleInfo[3] == 1 && selectedMenuSlot == 2){
+                    currentBattleInfo[3] = 1.3
                     keyX = false
                 }
             }else if(currentBattleInfo[3] == 1.1 && currentBattleInfo[2][2+selectedMenuSlot] != 0){

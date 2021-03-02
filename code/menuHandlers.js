@@ -30,7 +30,7 @@ function menuHandler(){
             selectedPartySlot = 0
         }
     }
-    if (menu == "item"){
+    if (menu == "item" || (menu == "fight" && currentBattleInfo[3] == 1.3)){
         if (left == true && bagPockets[3] != 0){
             bagPockets[3] -= 1
             selectedItem = 0
@@ -38,7 +38,7 @@ function menuHandler(){
         }
         if (right == true && 2 > bagPockets[3]){
             bagPockets[3] += 1
-            selectedItem = 
+            selectedItem = 0
             right = false
         }
         if (up == true && selectedItem != 0){
@@ -54,6 +54,15 @@ function menuHandler(){
         }else if (selectedItem == 9 && down == true && bagPockets[bagPockets[3]][1].length-1-scrolledInBag > 9){
             scrolledInBag += 1
             down = false
+        }
+        if(keyX && menu == "fight"){
+            if(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][0] == "pokeball" && party.length != 5){
+                menu = "none"
+                var nickname = window.prompt("give nickname to captured pokemon?").toLowerCase().replace(/\W/g, '?')
+                party.push([currentBattleInfo[0][0], currentBattleInfo[0][1], currentBattleInfo[0][2], currentBattleInfo[0][3], currentBattleInfo[0][4], currentBattleInfo[0][5], "", nickname, currentBattleInfo[0][6]])
+                //id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
+                //[pokemon,lvl,5,0,0,0,Math.round((2*pokedex[pokemon][1][0]*lvl)/100+lvl+10)]
+            }
         }
     }else if(menu == "pkmn" || (menu == "fight" && currentBattleInfo[3] == 1.2)){
         if (partySubMenu == false){
