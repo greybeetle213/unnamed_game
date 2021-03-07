@@ -1,4 +1,4 @@
-function print(writing,x,y,scale){
+function print(writing,x,y,scale=pixelsize){
     letterx = 0
     for(printcounter = 0; printcounter < writing.length; printcounter += 1){
             if (writing[printcounter] != " "){

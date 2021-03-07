@@ -56,11 +56,12 @@ function menuHandler(){
             down = false
         }
         if(keyX && menu == "fight"){
-            if(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][0] == "pokeball" && party.length != 5){
-                menu = "none"
-                var nickname = window.prompt("give nickname to captured pokemon?").toLowerCase().replace(/\W/g, '?')
-                party.push([currentBattleInfo[0][0], currentBattleInfo[0][1], currentBattleInfo[0][2], currentBattleInfo[0][3], currentBattleInfo[0][4], currentBattleInfo[0][5], "", nickname, currentBattleInfo[0][6]])
-                //id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
+            if(itemDex[bagPockets[bagPockets[3]][1][bagPockets[bagPockets[3]][1].length-1-(selectedItem+scrolledInBag)][0]][0] == "pokeball" && party.length != 6){
+                currentBattleInfo[3] = 0
+                currentBattleInfo[5][3] = 1
+                miscImage.src = "other_images/pokeball-closed.png"
+                setTimeout(function(){var nickname = window.prompt("give nickname to captured pokemon?").toLowerCase().replace(/\W/g, '?');party.push([currentBattleInfo[0][0], currentBattleInfo[0][1], currentBattleInfo[0][2], currentBattleInfo[0][3], currentBattleInfo[0][4], currentBattleInfo[0][5], "", nickname, currentBattleInfo[0][6]]);                menu = "none"}, 1000)    
+               //id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
                 //[pokemon,lvl,5,0,0,0,Math.round((2*pokedex[pokemon][1][0]*lvl)/100+lvl+10)]
             }
         }

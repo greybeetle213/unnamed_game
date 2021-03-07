@@ -23,7 +23,8 @@ function BattleEngineGraphics(){
     if(moveType == "phy" || currentBattleInfo[3] < 2){
         if(currentBattleInfo[5][2] == "own"){
             ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2)+Math.floor(currentBattleInfo[5][0][0])*pixelsize,canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
-            ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+            if(currentBattleInfo[5][3] < 60)
+                ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
         }else{
             ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
             ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize-Math.floor(currentBattleInfo[5][0][0])*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
@@ -45,6 +46,18 @@ function BattleEngineGraphics(){
             ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
             ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
         }
+    }
+    if(currentBattleInfo[5][3] > 0 && currentBattleInfo[5][3] < 60){
+        ctx.drawImage(miscImage, (73+currentBattleInfo[5][3]/2)*pixelsize, (95-currentBattleInfo[5][3])*pixelsize, miscImage.width*pixelsize, miscImage.height*pixelsize)
+        currentBattleInfo[5][3] += 2
+    }else if (currentBattleInfo[5][3] >= 60){
+        if(currentBattleInfo[5][3] == 61){
+            miscImage.src = "other_images/pokeball-open.png"
+        }else if(currentBattleInfo[5][3] == 90){
+            miscImage.src = "other_images/pokeball-closed.png"
+        }
+        currentBattleInfo[5][3] += 1
+        ctx.drawImage(miscImage, 103*pixelsize, 45*pixelsize, miscImage.height*pixelsize, miscImage.width*pixelsize)
     }
     ctx.fillStyle = "black"
     ctx.fillRect(canvas.width-62*pixelsize,canvas.height-55*pixelsize,55*pixelsize,4*pixelsize)
@@ -199,7 +212,7 @@ function BattleEngine(){
                     if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < acuracyRoll){
                         moveType = "miss"
                         keyX = false
-                        currentBattleInfo[5] = [[0,0.2],0,"own"]
+                        currentBattleInfo[5] = [[0,0.2],0,"own", 0]
                         if(currentBattleInfo[2][7] == ""){
                             currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
                         }else{
@@ -207,7 +220,7 @@ function BattleEngine(){
                         }
                         console.log("miss")
                     }else{
-                        currentBattleInfo[5] = [[0,0.2],0,"own"]
+                        currentBattleInfo[5] = [[0,0.2],0,"own", 0]
                         if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
                             moveType = "phy"
                         }else{
@@ -243,14 +256,14 @@ function BattleEngine(){
                         if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < acuracyRoll){
                             moveType = "miss"
                             keyX = false
-                            currentBattleInfo[5] = [[0,0.2],0,"own"]
+                            currentBattleInfo[5] = [[0,0.2],0,"own", 0]
                             if(currentBattleInfo[2][7] == ""){
                                 currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
                             }else{
                                 currentBattleInfo[4] = [currentBattleInfo[2][7] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
                             }                            console.log("miss")
                         }else{
-                            currentBattleInfo[5] = [[0,0.2],0,"own"]
+                            currentBattleInfo[5] = [[0,0.2],0,"own", 0]
                             if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
                                 moveType = "phy"
                             }else{

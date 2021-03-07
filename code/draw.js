@@ -31,7 +31,7 @@ function draw(){
         print("option", 130*pixelsize, 81*pixelsize, pixelsize)
         print("exit", 130*pixelsize, 95*pixelsize, pixelsize)
         ctx.drawImage(menuSelecter, 122*pixelsize, 14*selectedMenuSlot*pixelsize+11*pixelsize,7*pixelsize,7*pixelsize)
-    }else if (menu == "item"){
+    }else if (menu == "item" || (menu == "fight" && currentBattleInfo[3] == 1.3)){
         ctx.fillStyle = "#0000FF"
         ctx.fillRect(0,0,canvas.width,canvas.height)
         ctx.fillStyle = "#9999FF"
