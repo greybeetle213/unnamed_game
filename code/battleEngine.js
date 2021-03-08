@@ -50,7 +50,7 @@ function BattleEngineGraphics(){
     if(currentBattleInfo[5][3] > 0 && currentBattleInfo[5][3] < 60){
         ctx.drawImage(miscImage, (73+currentBattleInfo[5][3]/2)*pixelsize, (95-currentBattleInfo[5][3])*pixelsize, miscImage.width*pixelsize, miscImage.height*pixelsize)
         currentBattleInfo[5][3] += 2
-    }else if (currentBattleInfo[5][3] >= 60){
+    }else if (currentBattleInfo[5][3] >= 60 && currentBattleInfo[5][3] != 131){
         if(currentBattleInfo[5][3] == 61){
             miscImage.src = "other_images/pokeball-open.png"
         }else if(currentBattleInfo[5][3] == 90){
@@ -59,6 +59,23 @@ function BattleEngineGraphics(){
         currentBattleInfo[5][3] += 1
         ctx.drawImage(miscImage, 103*pixelsize, 45*pixelsize, miscImage.height*pixelsize, miscImage.width*pixelsize)
     }
+    if (currentBattleInfo[5][3] == 131){
+        var HPmax = Math.round((2*pokedex[currentBattleInfo[0][0]][1][0]*currentBattleInfo[0][1])/100+currentBattleInfo[0][1]+10)
+        var chance = (HPmax * 255 * 4) / (currentBattleInfo[0][6] * 255)
+        if(chance >= Math.round(Math.random()*255)){
+            var nickname = window.prompt("give nickname to captured pokemon?").toLowerCase().replace(/\W/g, '?')
+            party.push([currentBattleInfo[0][0], currentBattleInfo[0][1], currentBattleInfo[0][2], currentBattleInfo[0][3], currentBattleInfo[0][4], currentBattleInfo[0][5], "", nickname, currentBattleInfo[0][6]])
+            menu = "none"
+        }else{
+            currentBattleInfo[3] = 2.3 // start enymeys turn
+            currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
+            currentBattleInfo[5][3] = 0 
+            currentBattleInfo[4] = ["the pokemon broke free",""]// display text
+            console.log("catch fail")
+        }
+        console.log(currentBattleInfo[5][3])
+    }
+
     ctx.fillStyle = "black"
     ctx.fillRect(canvas.width-62*pixelsize,canvas.height-55*pixelsize,55*pixelsize,4*pixelsize)
     var HPTODraw = (currentBattleInfo[2][8]/Math.round((2*pokedex[currentBattleInfo[2][0]][1][0]*Math.floor(currentBattleInfo[2][1]))/100+Math.floor(currentBattleInfo[2][1])+10))*53
@@ -233,11 +250,11 @@ function BattleEngine(){
                     if(moveDex[enemysMove][3] < acuracyRoll){
                         moveType = "miss"
                         keyX = false
-                        currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                        currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                         currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0] + " used ", moveDex[enemysMove][0], "but it missed", ""]
                         console.log("miss")
                     }else{
-                        currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                        currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                         if(moveDex[enemysMove][4] == "phy"){
                             moveType = "phy"
                         }else{
@@ -276,11 +293,11 @@ function BattleEngine(){
                         if(moveDex[enemysMove][3] < acuracyRoll){
                             moveType = "miss"
                             keyX = false
-                            currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                            currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                             currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0] + " used ", moveDex[enemysMove][0], "but it missed", ""]
                             console.log("miss")
                         }else{
-                            currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                            currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                             if(moveDex[enemysMove][4] == "phy"){
                                 moveType = "phy"
                             }else{
@@ -358,7 +375,7 @@ function BattleEngine(){
                     useableMoves.push(currentBattleInfo[0][5])
                 }
                 enemysMove = useableMoves[Math.floor(Math.random()*useableMoves.length)]
-                currentBattleInfo[5] = [[0,0.2],0,"foe"]
+                currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                 if(moveDex[enemysMove][4] == "phy"){
                     moveType = "phy"
                 }else{
