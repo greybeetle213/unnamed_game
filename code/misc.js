@@ -64,6 +64,7 @@ function loadRute1(){
     map.startingPos = [64*pixelsize,16 * pixelsize]
     player.x = 1
     player.y = 1
+    currentMapPokemon = { levelRange: [10, 15], commonSpawns: [7], uncommonSpawns: [7], rareSpawns: [7], ultraRareSpawns: [0, 3] }
     player.playerx = 80 * pixelsize
     player.playery = 16 * pixelsize
     player.xCameraMovement = "free"
@@ -71,6 +72,7 @@ function loadRute1(){
     player.camerax = 0
     player.cameray = 0
     room1.onload = function() {console.log("loaded")}
+    console.log("loadRute1")
     room1.src = "terrain/rute1.png"
     map.image = "terrain/rute1.png"
     map.npcs = []
@@ -90,7 +92,9 @@ function returnFromRute1(){
     player.yCameraMovement = "free"
     player.camerax = 0
     player.cameray = 0
+    currentMapPokemon = { levelRange: [4, 6], commonSpawns: [0, 3], uncommonSpawns: [0, 3], rareSpawns: [7], ultraRareSpawns: [0, 3] }
     room1.onload = function() {console.log("loaded")}
+    console.log("returnFromRute1")
     room1.src = "terrain/Home.png"
     map.image = "terrain/Home.png"
     map.npcs = [[1,16*pixelsize,(112-160)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,8,["hi!","i like shorts!","they're comfy","and easy to", "wear!",""] ],[1,16*pixelsize,(144-160)*pixelsize,[new Image(),new Image(),new Image(),new Image(),new Image()],2,10,["have you seen", "billy anywhere?", "he was playing","with a strange","balloon last i", "saw him."] ]]
@@ -101,6 +105,21 @@ function returnToCheckPoint(){
     Object.assign(map, lastCheckPoint[1])
     Object.assign(player, lastCheckPoint[2])
     returningToCheckPoint = false
-    loadNPCS()
     room1.src = lastCheckPoint[3]
+    loadNPCS()
+}
+function getDamageMultiplier(attackingType, defendingTypes){ // run in battleEngine.js. calculates super effective and resistant moves
+    var damageMultipier = 1
+    for(i = 0; i != defendingTypes.length; i++){
+        if(types[attackingType][defendingTypes[i]] == "2"){
+            damageMultipier ++
+        }
+        if(types[attackingType][defendingTypes[i]] == "0.5"){
+            damageMultipier /= 2
+        }
+        if(types[attackingType][defendingTypes[i]] == "0"){
+            damageMultipier = 0
+        }
+    }
+    return(damageMultipier)
 }

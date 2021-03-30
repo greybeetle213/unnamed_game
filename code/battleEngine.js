@@ -23,11 +23,14 @@ function BattleEngineGraphics(){
     if(moveType == "phy" || currentBattleInfo[3] < 2){
         if(currentBattleInfo[5][2] == "own"){
             ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2)+Math.floor(currentBattleInfo[5][0][0])*pixelsize,canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
-            if(currentBattleInfo[5][3] < 60)
+            if(currentBattleInfo[5][3] < 60){
                 ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+            }
         }else{
             ctx.drawImage(playersBattlePokemonSprite,14*pixelsize+(64-playersBattlePokemonSprite.width/2),canvas.height-38*pixelsize-playersBattlePokemonSprite.height*pixelsize,playersBattlePokemonSprite.width*pixelsize,playersBattlePokemonSprite.height*pixelsize-2*pixelsize)
-            ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize-Math.floor(currentBattleInfo[5][0][0])*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+            if(currentBattleInfo[5][3] < 60){
+                ctx.drawImage(opponentsBattlePokemonSprite, 86*pixelsize-Math.floor(currentBattleInfo[5][0][0])*pixelsize, 5*pixelsize, 64*pixelsize,64*pixelsize)
+            }   
         }
     }else{
         if(currentBattleInfo[5][0][0] != 0){
@@ -61,7 +64,8 @@ function BattleEngineGraphics(){
     }
     if (currentBattleInfo[5][3] == 131){
         var HPmax = Math.round((2*pokedex[currentBattleInfo[0][0]][1][0]*currentBattleInfo[0][1])/100+currentBattleInfo[0][1]+10)
-        var chance = (HPmax * 255 * 4) / (currentBattleInfo[0][6] * 255)
+        var chance = ((HPmax * 255 * 4) / (currentBattleInfo[0][6] * 255)) * 4
+        console.log("chance: ", chance)
         if(chance >= Math.round(Math.random()*255)){
             var nickname = window.prompt("give nickname to captured pokemon?").toLowerCase().replace(/\W/g, '?')
             party.push([currentBattleInfo[0][0], currentBattleInfo[0][1], currentBattleInfo[0][2], currentBattleInfo[0][3], currentBattleInfo[0][4], currentBattleInfo[0][5], "", nickname, currentBattleInfo[0][6]])
@@ -470,7 +474,7 @@ function BattleEngine(){
                 var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][3]+8)*lvl)/100+5)
                 var def = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][6]+8)*lvl)/100+5)
             }
-            currentBattleInfo[0][6] -= (((2*lvl/5)+2)*power*atk/def)/50
+            currentBattleInfo[0][6] -= ((((2*lvl/5)+2)*power*atk/def)/50)// * getDamageMultiplier(moveDex[currentBattleInfo[2][selectedMenuSlot+2]][6]) //EFFECTIVENESS
             if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5] != "none"){
                 if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5].substr(0,3) == "foe"){
                     if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5].substr(4,3) == "atk" && opponetsStatModifyers[0] >= 0.5){

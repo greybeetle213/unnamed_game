@@ -50,7 +50,7 @@ function init() {
     MapColision = {room0:[[1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,1,1,1,0,0,0,0,1],[1,0,0,1,1,1,1,1,1,1,0,0,1],[1,0,0,1,2,1,3,1,2,1,0,0,1],[1,0,0,1,2,2,0,2,2,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,"npc 1",1,1,1,0,1,1,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,"npc 1",1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,4,4,1,1,1,1,1,1],], house0:[[1,1,1,1,1,1,1,1,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,1,1,"npc 0",0,0,],[0,0,0,1,1,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,0,0,0,0,0,],[0,0,0,3,3,0,0,0,]], rute1:[[1,4,4,4,1,1,1,1,1,1,1,1,5,5,5,1],[1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1],[1,0,0,0,1,1,1,1,3,1,1,1,0,0,0,1],[1,0,0,0,0,2,2,0,0,0,2,2,0,0,0,1],[1,0,0,0,0,2,2,2,2,2,2,2,0,0,0,1],[1,0,0,0,0,2,2,2,2,2,2,2,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]}
     currentMapColision = [[1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,1,1,1,0,0,0,0,1],[1,0,0,1,1,1,1,1,1,1,0,0,1],[1,0,0,1,2,1,3,1,2,1,0,0,1],[1,0,0,1,2,2,0,2,2,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,"npc 1",1,1,1,0,1,1,1,0,0,1],[1,0,0,1,1,1,0,1,1,1,0,0,1],[1,0,"npc 1",1,1,1,0,1,1,1,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,4,4,1,1,1,1,1,1],]
     //the colision for the current room
-    currentMapPokemon = { levelRange: [2, 6], commonSpawns: [0, 3], uncommonSpawns: [0, 3], rareSpawns: [0, 3], ultraRareSpawns: [0, 3] }
+    currentMapPokemon = { levelRange: [4, 6], commonSpawns: [0, 3], uncommonSpawns: [0, 3], rareSpawns: [7], ultraRareSpawns: [0, 3] }
     // common spawns have a 100/126 chance to spawn uncommon are 20/126 rare are 5/126 and ultraRare are 1/126 levelRange is the level the pokemon will spawn at the will spawn at a level between the first level and the second one minus one
     cameray = 0
     camerax = 0
@@ -58,6 +58,7 @@ function init() {
     playery = pixelsize * 64
     x = 6// the players curren position in the grid. not in pixels. used for colision.
     y = 5
+    types = [['', 'nor', 'fir', 'wat', 'ele', 'gra', 'ice', 'fig', 'poi', 'gro', 'fly', 'psy', 'bug', 'roc', 'gho', 'dra', 'dar', 'ste', 'fai'], ['normal', '', '', '', '', '', '', '', '', '', '', '', '', '0.5', '0', '', '', '0.5', ''], ['fire', '', '0.5', '0.5', '', '2', '2', '', '', '', '', '', '2', '0.5', '', '0.5', '', '2', ''], ['water', '', '2', '0.5', '', '0.5', '', '', '', '2', '', '', '', '2', '', '0.5', '', '', ''], ['electric', '', '', '2', '0.5', '0.5', '', '', '', '0', '2', '', '', '', '', '0.5', '', '', ''], ['grass', '', '0.5', '2', '', '0.5', '', '', '0.5', '2', '0.5', '', '0.5', '2', '', '0.5', '', '0.5', ''], ['ice', '', '0.5', '0.5', '', '2', '0.5', '', '', '2', '2', '', '', '', '', '2', '', '0.5', ''], ['fighting', '2', '', '', '', '', '2', '', '0.5', '', '0.5', '0.5', '0.5', '2', '0', '', '2', '2', '0.5'], ['poison', '', '', '', '', '2', '', '', '0.5', '0.5', '', '', '', '0.5', '0.5', '', '', '0', '2'], ['ground', '', '2', '', '2', '0.5', '', '', '2', '', '0', '', '0.5', '2', '', '', '', '2', ''], ['flying', '', '', '', '0.5', '2', '', '2', '', '', '', '', '2', '0.5', '', '', '', '0.5', ''], ['psychic', '', '', '', '', '', '', '2', '2', '', '', '0.5', '', '', '', '', '0', '0.5', ''], ['bug', '', '0.5', '', '', '2', '', '0.5', '0.5', '', '0.5', '2', '', '', '0.5', '', '2', '0.5', '0.5'], ['rock', '', '2', '', '', '', '2', '0.5', '', '0.5', '2', '', '2', '', '', '', '', '0.5', ''], ['ghost', '0', '', '', '', '', '', '', '', '', '', '2', '', '', '2', '', '0.5', '', ''], ['dragon', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2', '', '0.5', '0'], ['dark', '', '', '', '', '', '', '0.5', '', '', '', '2', '', '', '2', '', '0.5', '', '0.5'], ['steel', '', '0.5', '0.5', '0.5', '', '2', '', '', '', '', '', '', '2', '', '', '', '0.5', '2']]
     Directon = 0//
     AnimaionProgress = 2
     miscImage = new Image
@@ -66,8 +67,8 @@ function init() {
     moveType = "phy" // whether the move thats animation is playing is a special or physical attack
     battleAnimationProgress = 0
     itemDex = [["pokeball", "item", ["a device for capturing pokemon", ""]], ["greatball", "item", ["a better device for capturing", "pokemon"]], ["pokedex", "KeyItem", ["lets you keep track of captured", "pokemon"]], ["hm 01", "Tm Hm", ["cuts down small trees", "if taught to a pokemon"]] ]
-    pokedex = [['bulbasaur',[45,49,49,65,45,0,65,"grass"], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['charmander',[39,52,43,60,65, 1,50,"fire"],[]],['Charmelion'],['Charizard'],['caterpie',[10, 5,5,5,5,1],[]]] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape sp.def], [move, level.learned]]
-    moveDex = [["....."],["scratch", 40, 35, 100, "phy", "none", "normal"], ["growl", 0, 40, 100, "phy","foe atk -1", "normal"], ["ember", 40, 40, 100, "spe","bur", "fire"], ["sand attack", 0, 15, 100, "spe", "foe acu -1", "ground"], ["hydro pump", 110, 5, 80, "spe", "none", "water"]] // name, power, power points, acuracy (percent), specail/physical, effects (eg. poison, attack drop ect.), type
+    pokedex = [['bulbasaur',[45,49,49,65,45,0,65,[5, 8]], [10, 3]],['Ivysaur', ['10', '3']],['Venusaur', [10, 3]],['charmander',[39,52,43,60,65, 1,50,[2]],[]],['Charmelion'],['Charizard'],['caterpie',[10, 5,5,5,5,1],[]], ["konchifly",[35, 40, 35, 50, 50, 3, 40, [12, 10]], []]] //Pokedex. [pokemon name, [base hp atk def sp.atk spd shape sp.def], [move, level.learned]]
+    moveDex = [["....."],["scratch", 40, 35, 100, "phy", "none", 1], ["growl", 0, 40, 100, "phy","foe atk -1", 1], ["ember", 40, 40, 100, "spe","bur", 2], ["sand attack", 0, 15, 100, "spe", "foe acu -1", 9], ["hydro pump", 110, 5, 80, "spe", "none", 3]] // name, power, power points, acuracy (percent), specail/physical, effects (eg. poison, attack drop ect.), type
     pokemonShapes = [new Image, new Image, new Image, new Image,new Image, new Image, new Image, new Image,new Image, new Image]
     for (counter = 0; counter != 10; counter ++){
         if (counter != 10){ 
@@ -81,10 +82,10 @@ function init() {
     opponetsStatModifyers = [1,1,1,1,1,1,1] //atk,def,sp.atk,sp.def,spd
     playersStatModyfyers = [1,1,1,1,1,1,1] //atk,def,sp.atk,sp.def,spd
     bag.src = "other_images/bag.png"
-    bagPockets = [["items", [[1,3],[0,10]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
+    bagPockets = [["items", [[1,3],[0, 2]]],["key items", [[2, 1]] ],["tms and hms", [] ], 0]// the names of the bag pockets and the items the item data is stored [index in itemDex, amount owned by player] the last item in the list refrances the selected bag pocket eg. 0 = items 1 = keyitems ect. the items in pockets display backward in the bag
     scrolledInBag = 0 //how far down you are scrolled in the item viewer
     selectedItem = 0
-    party = [[0,70.58,1,2,3,4,'','', 143],[3,7,1,2,3,4,'','', 22],[0,2,1,3,2,0,'','fredrick', 14],[3,5,1,3,2,5,'','mandy', 188]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
+    party = [[0,70.58,1,2,3,4,'','', 143],[7,7,1,2,3,4,'','', 22],[0,2,1,3,2,0,'','fredrick', 14],[3,5,1,3,2,5,'','mandy', 188]] //Pokemon stats: id, lvl, move 1, move 2, move 3, move 4 , held item, nickname, hp
     selectedPartySlot = 0
     partySubMenu = false
     movingPokemon = -1
