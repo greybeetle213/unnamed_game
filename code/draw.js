@@ -151,31 +151,55 @@ function draw(){
         print(pokedex[party[selectedPartySlot][0]][0],1*pixelsize,10*pixelsize, pixelsize)
         print("pokemon info", 1*pixelsize, 1*pixelsize, pixelsize)
         ctx.fillStyle = "lightgrey"
-        ctx.fillRect(70*pixelsize, 11*pixelsize, 20*pixelsize, 9*pixelsize)
-        print("hp", 75*pixelsize,12*pixelsize, pixelsize)
-        print(Math.ceil(party[selectedPartySlot][8])+"/"+Math.round((2*pokedex[party[selectedPartySlot][0]][1][0]*Math.floor(party[selectedPartySlot][1]))/100+Math.floor(party[selectedPartySlot][1])+10), canvas.width-40*pixelsize,12*pixelsize, pixelsize)
-        ctx.fillRect(70*pixelsize, 23*pixelsize, 20*pixelsize, 9*pixelsize)
-        print("atk", 72*pixelsize, 24*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][1]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,24*pixelsize,pixelsize)
-        ctx.fillRect(70*pixelsize, 35*pixelsize, 20*pixelsize, 9*pixelsize)
-        print("def", 72*pixelsize, 36*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][2]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,36*pixelsize,pixelsize)
-        ctx.fillRect(70*pixelsize, 47*pixelsize, 36*pixelsize, 9*pixelsize)
-        print("sp.atk", 72*pixelsize, 48*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][3]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,48*pixelsize,pixelsize)
-        ctx.fillRect(70*pixelsize, 59*pixelsize, 36*pixelsize, 9*pixelsize)
-        print("sp.def", 72*pixelsize, 60*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][6]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,60*pixelsize,pixelsize)
-        ctx.fillRect(70*pixelsize, 71*pixelsize, 20*pixelsize, 9*pixelsize)
-        print("spd", 72*pixelsize, 72*pixelsize, pixelsize)
-        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][4]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,72*pixelsize,pixelsize)
-        print("lvl "+Math.floor(Math.floor(party[selectedPartySlot][1])), pixelsize*1,85*pixelsize,pixelsize)
+        ctx.fillRect(70*pixelsize, 10*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("hp", 75*pixelsize,11*pixelsize, pixelsize)
+        print(Math.ceil(party[selectedPartySlot][8])+"/"+Math.round((2*pokedex[party[selectedPartySlot][0]][1][0]*Math.floor(party[selectedPartySlot][1]))/100+Math.floor(party[selectedPartySlot][1])+10), canvas.width-40*pixelsize,11*pixelsize, pixelsize)
+        ctx.fillRect(70*pixelsize, 21*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("atk", 72*pixelsize, 22*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][1]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,22*pixelsize,pixelsize)
+        ctx.fillRect(70*pixelsize, 32*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("def", 72*pixelsize, 33*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][2]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,33*pixelsize,pixelsize)
+        ctx.fillRect(70*pixelsize, 43*pixelsize, 36*pixelsize, 9*pixelsize)
+        print("sp.atk", 72*pixelsize, 44*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][3]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,44*pixelsize,pixelsize)
+        ctx.fillRect(70*pixelsize, 54*pixelsize, 36*pixelsize, 9*pixelsize)
+        print("sp.def", 72*pixelsize, 55*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][6]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,55*pixelsize,pixelsize)
+        ctx.fillRect(70*pixelsize, 65*pixelsize, 20*pixelsize, 9*pixelsize)
+        print("spd", 72*pixelsize, 66*pixelsize, pixelsize)
+        print(String(Math.round(((2*pokedex[party[selectedPartySlot][0]][1][4]+8)*Math.floor(party[selectedPartySlot][1]))/100+5)), canvas.width-18*pixelsize,66*pixelsize,pixelsize)
+        print("lvl "+Math.floor(Math.floor(party[selectedPartySlot][1])), pixelsize*1,86*pixelsize,pixelsize) //draw the pokemons EXP bar
         ctx.fillStyle = "black"
-        ctx.fillRect(pixelsize*40,85*pixelsize, 70*pixelsize, 7*pixelsize)
+        ctx.fillRect(pixelsize*40,86*pixelsize, 70*pixelsize, 7*pixelsize)
         ctx.fillStyle = "lightblue"
-        ctx.fillRect(pixelsize*41,86*pixelsize, ((party[selectedPartySlot][1] - Math.floor(party[selectedPartySlot][1]))*68)*pixelsize, 5*pixelsize)
+        ctx.fillRect(pixelsize*41,87*pixelsize, ((party[selectedPartySlot][1] - Math.floor(party[selectedPartySlot][1]))*68)*pixelsize, 5*pixelsize)    
+        ctx.fillStyle = types[0][pokedex[party[selectedPartySlot][0]][1][7][0]]//draw the pokemon's first type
+        var pokemonType1 = types[pokedex[party[selectedPartySlot][0]][1][7][0]][0]
+        ctx.fillRect(70*pixelsize,76*pixelsize,pokemonType1.length*6*pixelsize, 9*pixelsize)
+        print(pokemonType1, 71*pixelsize, 77*pixelsize)
+        if(pokedex[party[selectedPartySlot][0]][1][7][1]){
+            ctx.fillStyle = types[0][pokedex[party[selectedPartySlot][0]][1][7][1]]//draw the pokemon's second type
+            var pokemonType2 = types[pokedex[party[selectedPartySlot][0]][1][7][1]][0]
+            ctx.fillRect((pokemonType1.length*6+72)*pixelsize,76*pixelsize,pokemonType2.length*6*pixelsize, 9*pixelsize)
+            print(pokemonType2, (pokemonType1.length*6+74)*pixelsize, 77*pixelsize)
+        }
+        ctx.fillStyle = "lightblue"//draw the pokemon moveset
+        ctx.fillRect(5*pixelsize,96*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.fillRect(90*pixelsize,96*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.fillRect(5*pixelsize,118*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.fillRect(90*pixelsize,118*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.beginPath()
+        ctx.rect(5*pixelsize,96*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.rect(90*pixelsize,96*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.rect(5*pixelsize,118*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.rect(90*pixelsize,118*pixelsize,80*pixelsize,20*pixelsize)
+        ctx.stroke()
+        var moves = [moveDex[party[selectedPartySlot][2]][0], moveDex[party[selectedPartySlot][3]][0], moveDex[party[selectedPartySlot][4]][0], moveDex[party[selectedPartySlot][5]][0]]
+        print(moves[0], 7*pixelsize, 97*pixelsize)
+        print("pwr "+moveDex[party[selectedPartySlot][2]][1], 7*pixelsize, 107*pixelsize)
+        ctx.fillStyle = types[0][moveDex[selectedMenuSlot][6]]
 
-        
     }else if(menu == "fight"){
         BattleEngineGraphics()
     }

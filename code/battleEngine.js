@@ -65,7 +65,7 @@ function BattleEngineGraphics(){
     if (currentBattleInfo[5][3] == 131){
         var HPmax = Math.round((2*pokedex[currentBattleInfo[0][0]][1][0]*currentBattleInfo[0][1])/100+currentBattleInfo[0][1]+10)
         var chance = ((HPmax * 255 * 4) / (currentBattleInfo[0][6] * 255)) * 4
-        console.log("chance: ", chance)
+        //console.log("chance: ", chance)
         if(chance >= Math.round(Math.random()*255)){
             var nickname = window.prompt("give nickname to captured pokemon?").toLowerCase().replace(/\W/g, '?')
             party.push([currentBattleInfo[0][0], currentBattleInfo[0][1], currentBattleInfo[0][2], currentBattleInfo[0][3], currentBattleInfo[0][4], currentBattleInfo[0][5], "", nickname, currentBattleInfo[0][6]])
@@ -75,9 +75,9 @@ function BattleEngineGraphics(){
             currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
             currentBattleInfo[5][3] = 0 
             currentBattleInfo[4] = ["the pokemon broke free",""]// display text
-            console.log("catch fail")
+            //console.log("catch fail")
         }
-        console.log(currentBattleInfo[5][3])
+        //console.log(currentBattleInfo[5][3])
     }
 
     ctx.fillStyle = "black"
@@ -209,7 +209,7 @@ function BattleEngine(){
                     keyX = false
                 }
             }else if(currentBattleInfo[3] == 1.1 && currentBattleInfo[2][2+selectedMenuSlot] != 0){
-                console.log(currentBattleInfo[3])
+               //console.log(currentBattleInfo[3])
                 currentBattleInfo[3] = 2.1
                 var useableMoves = [] // moves the enemy pokemon can use 
                 if(currentBattleInfo[0][2] != 0){
@@ -229,7 +229,7 @@ function BattleEngine(){
                 if(Math.round(((2*pokedex[currentBattleInfo[2][0]][1][4]+8)*currentBattleInfo[2][1])/100+5) >= Math.round(((2*pokedex[currentBattleInfo[0][0]][1][4]+8)*currentBattleInfo[0][1])/100+5)){ 
                     //console.log("fired "+currentBattleInfo[3])
                     var acuracyRoll = Math.round(Math.random()*100)
-                    console.log(acuracyRoll)
+                   //console.log(acuracyRoll)
                     if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < acuracyRoll){
                         moveType = "miss"
                         keyX = false
@@ -239,7 +239,7 @@ function BattleEngine(){
                         }else{
                             currentBattleInfo[4] = [currentBattleInfo[2][7] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
                         }
-                        console.log("miss")
+                       //console.log("miss")
                     }else{
                         currentBattleInfo[5] = [[0,0.2],0,"own", 0]
                         if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
@@ -250,13 +250,13 @@ function BattleEngine(){
                     }
                 }else{
                     var acuracyRoll = Math.round(Math.random()*100)
-                    console.log("enemey acuracy "+acuracyRoll)
+                   //console.log("enemey acuracy "+acuracyRoll)
                     if(moveDex[enemysMove][3] < acuracyRoll){
                         moveType = "miss"
                         keyX = false
                         currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                         currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0] + " used ", moveDex[enemysMove][0], "but it missed", ""]
-                        console.log("miss")
+                       //console.log("miss")
                     }else{
                         currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                         if(moveDex[enemysMove][4] == "phy"){
@@ -264,7 +264,7 @@ function BattleEngine(){
                         }else{
                             moveType = "spe"
                         }
-                        console.log(moveType)
+                       //console.log(moveType)
                     }
                 }
             }else if(currentBattleInfo[3] == 2.1 && ((currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)||moveType == "miss")){
@@ -273,7 +273,7 @@ function BattleEngine(){
                     currentBattleInfo[3] = 2.2
                     if(currentBattleInfo[5][2] == "foe"){
                         var acuracyRoll = Math.round(Math.random()*100)
-                        console.log(acuracyRoll)
+                       //console.log(acuracyRoll)
                         if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][3] < acuracyRoll){
                             moveType = "miss"
                             keyX = false
@@ -282,7 +282,7 @@ function BattleEngine(){
                                 currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
                             }else{
                                 currentBattleInfo[4] = [currentBattleInfo[2][7] + " used ", moveDex[currentBattleInfo[2][2+selectedMenuSlot]][0], "but it missed", ""]
-                            }                            console.log("miss")
+                            }                           //console.log("miss")
                         }else{
                             currentBattleInfo[5] = [[0,0.2],0,"own", 0]
                             if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][4] == "phy"){
@@ -293,13 +293,13 @@ function BattleEngine(){
                         }
                     }else{
                         var acuracyRoll = Math.round(Math.random()*100)
-                        console.log("enemey acuracy "+acuracyRoll)
+                       //console.log("enemey acuracy "+acuracyRoll)
                         if(moveDex[enemysMove][3] < acuracyRoll){
                             moveType = "miss"
                             keyX = false
                             currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                             currentBattleInfo[4] = [pokedex[currentBattleInfo[0][0]][0] + " used ", moveDex[enemysMove][0], "but it missed", ""]
-                            console.log("miss")
+                           //console.log("miss")
                         }else{
                             currentBattleInfo[5] = [[0,0.2],0,"foe", 0]
                             if(moveDex[enemysMove][4] == "phy"){
@@ -307,7 +307,7 @@ function BattleEngine(){
                             }else{
                                 moveType = "spe"
                             }
-                            console.log(moveType)
+                           //console.log(moveType)
                         }
                     }
                 }else{
@@ -318,9 +318,9 @@ function BattleEngine(){
                         var lvl = currentBattleInfo[0][1]
                         var ownlvl = currentBattleInfo[2][1]
                         if(ownlvl < 100){
-                            console.log(ownlvl)
+                           //console.log(ownlvl)
                             currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
-                            console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
+                           //console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
                             if(currentBattleInfo[2][7] == ""){
                                 currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
                             }else{
@@ -349,9 +349,9 @@ function BattleEngine(){
                         var lvl = currentBattleInfo[0][1]
                         var ownlvl = currentBattleInfo[2][1]
                         if(ownlvl < 100){
-                            console.log(ownlvl)
+                           //console.log(ownlvl)
                             currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
-                            console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
+                           //console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
                             currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
                         }else{
                             currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", "0 exp"]
@@ -385,7 +385,7 @@ function BattleEngine(){
                 }else{
                     moveType = "spe"
                 }
-                console.log(moveType)
+               //console.log(moveType)
                 
                 currentBattleInfo[5][2] = "foe"
             }else if(currentBattleInfo[3] == 2.5){
@@ -405,9 +405,9 @@ function BattleEngine(){
                         var lvl = currentBattleInfo[0][1]
                         var ownlvl = currentBattleInfo[2][1]
                         if(ownlvl < 100){
-                            console.log(ownlvl)
+                           //console.log(ownlvl)
                             currentBattleInfo[2][1] += ((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/300
-                            console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
+                           //console.log([pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)/2).toFixed(2)*100+" exp"])
                             if(currentBattleInfo[2][7] == ""){
                                 currentBattleInfo[4] = [pokedex[currentBattleInfo[2][0]][0] + " gained ", (((battleType*150*lvl / 5) * Math.pow(2*lvl+10,2.5) / Math.pow(lvl+ownlvl+10, 2.5)+1)).toFixed(2)*100+" exp"]
                             }else{
@@ -428,7 +428,7 @@ function BattleEngine(){
             }
             if(currentBattleInfo[2][8] <= 0){
                 keyX = false
-                console.log("a")
+               //console.log("a")
                 var pokemonChecked 
                 for(pokemonChecked = 0; pokemonChecked < party.length; pokemonChecked ++){
                     if(party[pokemonChecked][8] > 0){
@@ -437,9 +437,9 @@ function BattleEngine(){
                 }
                 if(pokemonChecked != party.length){
                     currentBattleInfo[3] = 1.2
-                    console.log("b")
+                   //console.log("b")
                 }else{
-                    console.log("")
+                   //console.log("")
                     menu = "none"
                     for(pokemonChecked = 0; pokemonChecked < party.length; pokemonChecked ++){
                         Heal(pokemonChecked)
@@ -474,7 +474,9 @@ function BattleEngine(){
                 var atk = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][3]+8)*lvl)/100+5)
                 var def = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][6]+8)*lvl)/100+5)
             }
-            currentBattleInfo[0][6] -= ((((2*lvl/5)+2)*power*atk/def)/50)// * getDamageMultiplier(moveDex[currentBattleInfo[2][selectedMenuSlot+2]][6]) //EFFECTIVENESS
+            var damageMultiplier = getDamageMultiplier(moveDex[currentBattleInfo[2][selectedMenuSlot+2]][6], pokedex[currentBattleInfo[0][0]][1][7])
+            currentBattleInfo[0][6] -= ((((2*lvl/5)+2)*power*atk/def)/50) * damageMultiplier //EFFECTIVENESS
+           //console.log("damage multiplier: " + damageMultiplier)
             if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5] != "none"){
                 if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5].substr(0,3) == "foe"){
                     if(moveDex[currentBattleInfo[2][2+selectedMenuSlot]][5].substr(4,3) == "atk" && opponetsStatModifyers[0] >= 0.5){
@@ -486,6 +488,20 @@ function BattleEngine(){
                         currentBattleInfo[4].push("attack any further")
                     }
                 }
+            }
+            switch(damageMultiplier){
+                case 0:
+                    currentBattleInfo[4].push("but nothing happend")
+                    currentBattleInfo[4].push("")
+                    break
+                case 0.5:
+                    currentBattleInfo[4].push("it's not very")
+                    currentBattleInfo[4].push("effective")
+                    break
+                case 2:
+                    currentBattleInfo[4].push("it's super")
+                    currentBattleInfo[4].push("effective!")
+                    break
             }
             if(currentBattleInfo[0][6] < 0){
                 currentBattleInfo[0][6] = 0
@@ -505,7 +521,8 @@ function BattleEngine(){
                 var atk = Math.round(((2*pokedex[currentBattleInfo[0][0]][1][3]+8)*currentBattleInfo[0][1])/100+5)
                 var def = Math.round(((2*pokedex[currentBattleInfo[2][0]][1][6]+8)*currentBattleInfo[2][1])/100+5)
             }
-            currentBattleInfo[2][8] -= (((2*lvl/5)+2)*power*atk/def)/50
+            var damageMultiplier = getDamageMultiplier(moveDex[enemysMove][6], pokedex[currentBattleInfo[2][0]][1][7])
+            currentBattleInfo[2][8] -= ((((2*lvl/5)+2)*power*atk/def)/50) * damageMultiplier        
             if(currentBattleInfo[2][8] < 0){
                 currentBattleInfo[2][8] = 0
             }
@@ -521,7 +538,21 @@ function BattleEngine(){
                     }
                 }
             }
-            console.log([lvl,power,atk,def])
+            switch(damageMultiplier){
+                case 0:
+                    currentBattleInfo[4].push("but nothing happend")
+                    currentBattleInfo[4].push("")
+                    break
+                case 0.5:
+                    currentBattleInfo[4].push("it's not very")
+                    currentBattleInfo[4].push("effective")
+                    break
+                case 2:
+                    currentBattleInfo[4].push("it's super")
+                    currentBattleInfo[4].push("effective!")
+                    break
+            }
+           ////console.log([lvl,power,atk,def])
         }
         if(currentBattleInfo[5][0] != [0,-0.2] && moveType == "phy" && !(currentBattleInfo[5][0][0] <= 0.0 && currentBattleInfo[5][0][1] == -0.2)){
             currentBattleInfo[5][0][0] += currentBattleInfo[5][0][1]
