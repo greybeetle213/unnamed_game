@@ -79,6 +79,49 @@ function loadRute1(){
     loadNPCS()
     player.yMovement = 16
 }
+function loadTown1(){
+    map.colision = MapColision.town1 
+    map.width = 576 * pixelsize
+    map.height = 256 * pixelsize
+    map.startingPos = [-448*pixelsize, -176*pixelsize] //[, -160*pixelsize]
+    player.x = 33
+    player.y = 14
+    currentMapPokemon = { levelRange: [10, 15], commonSpawns: [7], uncommonSpawns: [7], rareSpawns: [7], ultraRareSpawns: [0, 3] }
+    player.playerx = 80 * pixelsize
+    player.playery = 64 * pixelsize
+    player.xCameraMovement = "free"
+    player.yCameraMovement = "free"
+    player.camerax = 0
+    player.cameray = 0
+    room1.onload = function() {console.log("loaded")}
+    console.log("loadTown1")
+    room1.src = "terrain/Town1.png"
+    map.image = "terrain/Town1.png"
+    map.npcs = []
+    loadNPCS()
+    player.yMovement = -16
+}
+function returnFromTown1(){
+    map.colision = MapColision.rute1 
+    map.width = 255 * pixelsize
+    map.height = 96 * pixelsize
+    map.startingPos = [-128*pixelsize,16 * pixelsize]
+    player.x = 13
+    player.y = 1
+    currentMapPokemon = { levelRange: [10, 15], commonSpawns: [7], uncommonSpawns: [7], rareSpawns: [7], ultraRareSpawns: [0, 3] }
+    player.playerx = 80 * pixelsize
+    player.playery = 16 * pixelsize
+    player.xCameraMovement = "free"
+    player.yCameraMovement = "fixed"
+    player.camerax = 0
+    player.cameray = 0
+    room1.onload = function() {console.log("loaded")}
+    room1.src = "terrain/rute1.png"
+    map.image = "terrain/rute1.png"
+    map.npcs = []
+    loadNPCS()
+    player.yMovement = 16
+}
 function returnFromRute1(){
     map.colision = MapColision.room0 
     map.width = 208 * pixelsize
